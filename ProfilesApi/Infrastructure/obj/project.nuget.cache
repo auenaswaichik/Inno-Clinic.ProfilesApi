@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kUUm0c2Axe8=",
+  "success": true,
+  "projectFilePath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Infrastructure/Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "/home/ilia/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.4/microsoft.aspnetcore.app.ref.9.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

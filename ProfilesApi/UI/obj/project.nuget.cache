@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "EveF3mLvbII=",
+  "success": true,
+  "projectFilePath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/UI/UI.csproj",
+  "expectedPackageFiles": [
+    "/home/ilia/.nuget/packages/microsoft.aspnetcore.openapi/9.0.4/microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
+    "/home/ilia/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512",
+    "/home/ilia/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.4/microsoft.aspnetcore.app.ref.9.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
