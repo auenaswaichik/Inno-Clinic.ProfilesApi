@@ -1,6 +1,6 @@
 namespace Shared.DTOs.PatientDTOs;
 
-public record CreatePatientDTOs(
+public record CreatePatientDTO(
     string? PatientFirstName,
     string? PatientMiddleName,
     string? PatientLastName,

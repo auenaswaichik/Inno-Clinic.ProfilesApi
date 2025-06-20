@@ -1,6 +1,6 @@
 namespace Shared.DTOs.AdminDTOs;
 
-public record UpdateAdminDTOs(
+public record UpdateAdminDTO(
     string? AdminFirstName,
     string? AdminMiddleName,
     string? AdminLastName,

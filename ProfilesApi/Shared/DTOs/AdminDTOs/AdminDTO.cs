@@ -1,6 +1,6 @@
 namespace Shared.DTOs.AdminDTOs;
 
-public record AdminDTOs(
+public record AdminDTO(
     string? AdminFirstName,
     string? AdminMiddleName,
     string? AdminLastName,
