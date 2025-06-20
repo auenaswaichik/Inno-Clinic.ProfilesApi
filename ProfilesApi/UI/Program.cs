@@ -1,6 +1,10 @@
 using Infrastructure.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
+using Application.IManagers;
+using Infrastructure.Mangers;
+using Application.IRepositories;
+using Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,11 @@ Env.Load();
 var connection = Environment.GetEnvironmentVariable("DATABASE_URL");
 
 builder.Services.AddDbContext<ProfilesApiDbContext>(options => options.UseSqlServer(connection));
+
+builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
 var app = builder.Build();
 
