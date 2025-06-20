@@ -3,6 +3,7 @@ using Application.IRepositories;
 using Infrastructure.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
+namespace Infrastructure.Repositories;
 public class PatientRepository : IPatientRepository
 {
     private readonly ProfilesApiDbContext _context;

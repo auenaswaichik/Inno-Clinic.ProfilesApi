@@ -2,6 +2,8 @@ using Domain.Entities;
 using Application.IRepositories;
 using Infrastructure.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
+
+namespace Infrastructure.Repositories;
 public class AdminRepository : IAdminRepository
 {
     private readonly ProfilesApiDbContext _context;
