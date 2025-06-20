@@ -9,5 +9,13 @@ public class ProfilesApiDbContext : DbContext
     public DbSet<Admin> Admins => Set<Admin>();
     public DbSet<Patient> Patients => Set<Patient>();
     public DbSet<Doctor> Doctors => Set<Doctor>();
-    protected override void OnModelCreating(ModelBuilder modelBuilder){}
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Admin>()
+            .HasKey(m => m.Admin_ID);
+        modelBuilder.Entity<Patient>()
+            .HasKey(m => m.Patient_ID);
+        modelBuilder.Entity<Doctor>()
+            .HasKey(m => m.Doctor_ID);
+    }
 }
