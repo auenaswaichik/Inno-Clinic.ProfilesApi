@@ -1,6 +1,6 @@
 namespace Shared.DTOs.DoctorDTOs;
 
-public record DoctorDTOs(
+public record DoctorDTO(
     string? DoctorFirstName,
     string? DoctorMiddleName,
     string? DoctorLastName,
