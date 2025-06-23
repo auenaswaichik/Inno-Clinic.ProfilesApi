@@ -4,9 +4,9 @@ namespace Domain.Interfaces.IRepositories;
 
 public interface IGenericRepository<T> where T : User
 {
-    public Task<IEnumerable<T>> GetAll();
-    public Task<T> GetById(object id);
-    public T Insert(T obj);
-    public T Update(T obj);
-    public Task Delete(object id);
+    public Task<IEnumerable<T>> GetAll(CancellationToken token);
+    public Task<T> GetById(object id, CancellationToken token);
+    public T Insert(T obj, CancellationToken token);
+    public T Update(T obj, CancellationToken token);
+    public Task Delete(object id, CancellationToken token);
 }
