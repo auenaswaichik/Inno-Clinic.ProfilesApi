@@ -26,11 +26,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Domain/Domain.csproj": {
-                "projectPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Domain/Domain.csproj"
-              },
-              "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Shared/Shared.csproj": {
-                "projectPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Shared/Shared.csproj"
+              "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Infrastructure/Infrastructure.csproj"
               }
             }
           }
@@ -51,9 +48,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "AutoMapper": {
+            "MediatR": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[11.1.0, )"
             }
           },
           "imports": [
@@ -103,11 +100,7 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {
-              "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Shared/Shared.csproj": {
-                "projectPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Shared/Shared.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -151,14 +144,14 @@
         }
       }
     },
-    "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Shared/Shared.csproj": {
+    "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Infrastructure/Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Shared/Shared.csproj",
-        "projectName": "Shared",
-        "projectPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Shared/Shared.csproj",
+        "projectUniqueName": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Infrastructure/Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Infrastructure/Infrastructure.csproj",
         "packagesPath": "/home/ilia/.nuget/packages/",
-        "outputPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Shared/obj/",
+        "outputPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ilia/.nuget/NuGet/NuGet.Config"
@@ -172,7 +165,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Domain/Domain.csproj": {
+                "projectPath": "/home/ilia/Desktop/Inno-Clinic.ProfilesApi/ProfilesApi/Domain/Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -190,6 +187,28 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

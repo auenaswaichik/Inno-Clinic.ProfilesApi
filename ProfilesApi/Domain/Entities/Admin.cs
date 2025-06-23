@@ -1,8 +1,7 @@
 namespace Domain.Entities;
 
-public class Admin
+public class Admin : User
 {
-    public Guid Admin_ID { get; set; }
     public string? AdminFirstName { get; set; }
     public string? AdminMiddleName { get; set; }
     public string? AdminLastName { get; set; }

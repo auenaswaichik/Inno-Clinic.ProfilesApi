@@ -11,11 +11,19 @@ public class ProfilesApiDbContext : DbContext
     public DbSet<Doctor> Doctors => Set<Doctor>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Admin>()
-            .HasKey(m => m.Admin_ID);
-        modelBuilder.Entity<Patient>()
-            .HasKey(m => m.Patient_ID);
-        modelBuilder.Entity<Doctor>()
-            .HasKey(m => m.Doctor_ID);
+    }
+     public void BeginTransaction()
+    {
+        Database.BeginTransaction();
+    }
+
+    public void CommitTransaction()
+    {
+        Database.CommitTransaction();
+    }
+
+    public void RollbackTransaction()
+    {
+        Database.RollbackTransaction();
     }
 }
