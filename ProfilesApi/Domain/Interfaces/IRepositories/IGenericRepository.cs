@@ -4,7 +4,7 @@ namespace Domain.Interfaces.IRepositories;
 
 public interface IGenericRepository<T> where T : User
 {
-    public Task<IEnumerable<T>> GetAll(CancellationToken token);
+    public Task<List<T>> GetAll(CancellationToken token);
     public Task<T> GetById(object id, CancellationToken token);
     public T Insert(T obj, CancellationToken token);
     public T Update(T obj, CancellationToken token);

@@ -22,7 +22,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : User
         );
     }
 
-    public async Task<IEnumerable<T>> GetAll(CancellationToken token)
+    public async Task<List<T>> GetAll(CancellationToken token)
     {
         return await _table.ToListAsync();
     }
