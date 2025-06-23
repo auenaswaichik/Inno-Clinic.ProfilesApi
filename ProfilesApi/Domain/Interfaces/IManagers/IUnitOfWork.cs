@@ -3,8 +3,9 @@ using Domain.Entities;
 
 namespace Domain.Interfaces.IManagers;
 
-public interface IRepositoryManager
+public interface IUnitOfWork
 {
+    void Rollback();
     Task SaveAsync();
     void Save();
 }

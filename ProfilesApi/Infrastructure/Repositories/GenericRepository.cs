@@ -32,9 +32,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : User
         return await _table.FindAsync(id);
     }
 
-    public async Task<T> Insert(T obj)
+    public T Insert(T obj)
     {
-        await _table.AddAsync(obj);
+        _table.Add(obj);
         return obj;
     }
 
