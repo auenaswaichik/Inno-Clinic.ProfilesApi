@@ -1,8 +1,7 @@
 namespace Domain.Entities;
 
-public class Doctor
+public class Doctor : User
 {
-    public Guid Doctor_ID { get; set; }
     public string? DoctorFirstName { get; set; }
     public string? DoctorMiddleName { get; set; }
     public string? DoctorLastName { get; set; }
