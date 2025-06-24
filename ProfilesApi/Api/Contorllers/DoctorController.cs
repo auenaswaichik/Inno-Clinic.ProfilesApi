@@ -1,3 +1,4 @@
+using Application.Doctors.Commands.CreateDoctor;
 using Application.Doctors.Queries.GetAllDoctors;
 using Application.Doctors.Queries.GetDoctorById;
 using Domain.Entities;
@@ -28,6 +29,12 @@ public class DoctorController : ControllerBase
     {
         var command = new GetDoctorByIdQuery() { Id = id };
         return await _mediator.Send(command) ?? throw new Exception("there is no such doctor");
+    }
+
+    [HttpPost("create-doctor")]
+    public async Task<Doctor> CreateDoctor([FromBody] CreateDoctorCommand command)
+    {
+        return await _mediator.Send(command) ?? throw new Exception("Something wrong");
     }
 
 }

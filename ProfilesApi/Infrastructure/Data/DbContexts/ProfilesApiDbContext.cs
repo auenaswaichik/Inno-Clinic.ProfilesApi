@@ -6,7 +6,7 @@ namespace Infrastructure.Data.DbContexts;
 public class ProfilesApiDbContext : DbContext
 {
 
-    public ProfilesApiDbContext(DbContextOptions<ProfilesApiDbContext> options) : base(options) { Database.EnsureDeleted(); Database.EnsureCreated(); }
+    public ProfilesApiDbContext(DbContextOptions<ProfilesApiDbContext> options) : base(options) { }
 
     public DbSet<Admin> Admins { get; set; }
     public DbSet<Patient> Patients { get; set; }

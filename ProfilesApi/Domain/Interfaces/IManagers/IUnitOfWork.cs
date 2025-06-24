@@ -6,6 +6,8 @@ namespace Domain.Interfaces.IManagers;
 public interface IUnitOfWork
 {
 
+    void BeginTransaction();
+
     void Rollback();
 
     Task SaveAsync();

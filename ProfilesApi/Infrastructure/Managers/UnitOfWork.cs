@@ -13,16 +13,21 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
     }
 
+    public void BeginTransaction()
+    {
+        //_context.BeginTransaction();
+    }
+
     public void Save()
     {
+        //_context.CommitTransaction();
         _context.SaveChanges();
-        _context.CommitTransaction();
     }
 
     public async Task SaveAsync()
     {
         await _context.SaveChangesAsync();
-        _context.CommitTransaction();
+        //_context.CommitTransaction();
     }
 
     public void Rollback()
