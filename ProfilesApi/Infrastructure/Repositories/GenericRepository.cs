@@ -7,13 +7,17 @@ namespace Infrastructure.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : User
 {
+
     private readonly ProfilesApiDbContext _context;
+
     private readonly DbSet<T> _table;
+
     public GenericRepository(ProfilesApiDbContext context)
     {
         _context = context;
         _table = _context.Set<T>();
     }
+
     public async Task Delete(object id, CancellationToken token)
     {
         _table.Remove
@@ -44,4 +48,5 @@ public class GenericRepository<T> : IGenericRepository<T> where T : User
         _context.Entry(obj).State = EntityState.Modified;
         return obj;
     }
+
 }

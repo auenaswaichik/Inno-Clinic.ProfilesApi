@@ -5,7 +5,11 @@ namespace Domain.Interfaces.IManagers;
 
 public interface IUnitOfWork
 {
+
     void Rollback();
+
     Task SaveAsync();
+
     void Save();
+
 }
