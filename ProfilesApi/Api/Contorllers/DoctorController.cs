@@ -27,28 +27,29 @@ public class DoctorController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
-    [HttpGet("id:guid")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<DoctorDTO>> GetDoctorById(Guid id)
     {
         var query = new GetDoctorByIdQuery() { Id = id };
         return Ok(await _mediator.Send(query));
     }
 
-    [HttpPost("create")]
+    [HttpPost]
     public async Task<ActionResult<DoctorDTO>> CreateDoctor([FromBody] CreateDoctorCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
-    [HttpPut("update")]
+    [HttpPut]
     public async Task<ActionResult<DoctorDTO>> UpdateDoctor([FromBody] UpdateDoctorCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
-    [HttpDelete("delete")]
-    public async Task<ActionResult<DoctorDTO>> DeleteDoctor([FromBody] DeleteDoctorCommand command)
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<DoctorDTO>> DeleteDoctor(Guid id)
     {
+        var command = new DeleteDoctorCommand() { Id = id };
         await _mediator.Send(command);
         return Ok();
     }    

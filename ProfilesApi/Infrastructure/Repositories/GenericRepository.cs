@@ -22,7 +22,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseUserMode
 
     public async Task<List<T>> GetAllAsync(CancellationToken token)
     {
-        return await _context.Set<T>().ToListAsync();
+        return await _context.Set<T>().AsNoTracking().ToListAsync();
     }
 
     public async Task<T> GetByIdAsync(object id, CancellationToken token)
