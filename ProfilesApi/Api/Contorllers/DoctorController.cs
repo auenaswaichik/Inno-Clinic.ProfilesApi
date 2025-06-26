@@ -1,7 +1,9 @@
-using Application.Doctors.Commands.CreateDoctor;
-using Application.Doctors.Queries.GetAllDoctors;
-using Application.Doctors.Queries.GetDoctorById;
-using Domain.Entities;
+using Application.Doctors.Models;
+using Application.Doctors.UseCases.CreateDoctor;
+using Application.Doctors.UseCases.DeleteDoctor;
+using Application.Doctors.UseCases.GetAllDoctors;
+using Application.Doctors.UseCases.GetDoctorById;
+using Application.Doctors.UseCases.UpdateDoctor;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,32 +11,46 @@ namespace Api.Controllers;
 
 [ApiController]
 [Route("api/doctors")]
-
 public class DoctorController : ControllerBase
 {
     private readonly IMediator _mediator;
 
     public DoctorController(IMediator mediator)
-        => _mediator = mediator;
+    {
+        _mediator = mediator;
+    }
 
     [HttpGet]
-    public async Task<List<Doctor>> GetDoctors()
+    public async Task<ActionResult<List<DoctorDTO>>> GetDoctors()
     {
-        var command = new GetAllDoctorsQuery();
-        return await _mediator.Send(command) ?? throw new Exception("there is no docs");
+        var query = new GetAllDoctorsQuery();
+        return Ok(await _mediator.Send(query));
     }
 
     [HttpGet("id:guid")]
-    public async Task<Doctor> GetDoctorById([FromHeader] Guid id)
+    public async Task<ActionResult<DoctorDTO>> GetDoctorById(Guid id)
     {
-        var command = new GetDoctorByIdQuery() { Id = id };
-        return await _mediator.Send(command) ?? throw new Exception("there is no such doctor");
+        var query = new GetDoctorByIdQuery() { Id = id };
+        return Ok(await _mediator.Send(query));
     }
 
-    [HttpPost("create-doctor")]
-    public async Task<Doctor> CreateDoctor([FromBody] CreateDoctorCommand command)
+    [HttpPost("create")]
+    public async Task<ActionResult<DoctorDTO>> CreateDoctor([FromBody] CreateDoctorCommand command)
     {
-        return await _mediator.Send(command) ?? throw new Exception("Something wrong");
+        return Ok(await _mediator.Send(command));
     }
+
+    [HttpPut("update")]
+    public async Task<ActionResult<DoctorDTO>> UpdateDoctor([FromBody] UpdateDoctorCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [HttpDelete("delete")]
+    public async Task<ActionResult<DoctorDTO>> DeleteDoctor([FromBody] DeleteDoctorCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
+    }    
 
 }

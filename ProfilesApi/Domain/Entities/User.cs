@@ -2,10 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities;
 
-public class User
+public class BaseUserModel
 {
 
-    [Key]
     public Guid Id { get; set; }
 
 }

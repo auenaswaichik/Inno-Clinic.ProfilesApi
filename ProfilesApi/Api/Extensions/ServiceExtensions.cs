@@ -1,10 +1,8 @@
-using Application.Doctors.Queries.GetAllDoctors;
-using Application.Doctors.Queries.GetDoctorById;
-using Domain.Interfaces.IManagers;
+using Application.Doctors.UseCases.GetAllDoctors;
+using Application.Doctors.UseCases.GetDoctorById;
 using Domain.Interfaces.IRepositories;
 using FluentValidation;
-using Infrastructure.Data.DbContexts;
-using Infrastructure.Mangers;
+using Infrastructure.DbContexts;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +10,7 @@ namespace Api.Extensions;
 
 public static class ServiceExtensions
 {
-    public static void AddRepositories(this IServiceCollection services)
+    public static void ConfigureRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IDoctorRepository, DoctorRepository>();
@@ -20,7 +18,7 @@ public static class ServiceExtensions
         services.AddScoped<IAdminRepository, AdminRepository>();
     }
 
-    public static void AddMediatr(this IServiceCollection services)
+    public static void ConfigureMediatr(this IServiceCollection services)
     {
         services.AddMediatR(cfg =>
         {
@@ -30,12 +28,12 @@ public static class ServiceExtensions
 
     }
 
-    public static void AddDataBaseContext(this IServiceCollection services, string connection)
+    public static void ConfigureDataBaseContext(this IServiceCollection services, string connection)
     {
         services.AddDbContext<ProfilesApiDbContext>(options => options.UseSqlServer(connection));
     }
 
-    public static void AddValidators(this IServiceCollection services)
+    public static void ConfigureValidators(this IServiceCollection services)
     {
         services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly);   
     }

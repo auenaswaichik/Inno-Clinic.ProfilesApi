@@ -11,10 +11,10 @@ Env.Load();
 
 var connection = Environment.GetEnvironmentVariable("DATABASE_URL");
 
-builder.Services.AddRepositories();
-builder.Services.AddMediatr();
-builder.Services.AddValidators();
-builder.Services.AddDataBaseContext(connection);
+builder.Services.ConfigureRepositories();
+builder.Services.ConfigureMediatr();
+builder.Services.ConfigureValidators();
+builder.Services.ConfigureDataBaseContext(connection);
 builder.Services.AddControllers();
 
 var app = builder.Build();

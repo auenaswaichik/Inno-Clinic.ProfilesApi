@@ -1,12 +1,9 @@
-using Domain.Interfaces.IRepositories;
 using Domain.Entities;
 
-namespace Domain.Interfaces.IManagers;
+namespace Domain.Interfaces.IRepositories;
 
 public interface IUnitOfWork
 {
-
-    void BeginTransaction();
 
     void Rollback();
 

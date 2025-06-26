@@ -2,17 +2,17 @@ using Domain.Entities;
 
 namespace Domain.Interfaces.IRepositories;
 
-public interface IGenericRepository<T> where T : User
+public interface IGenericRepository<T> where T : BaseUserModel
 {
     
-    public Task<List<T>> GetAll(CancellationToken token);
+    public Task<List<T>> GetAllAsync(CancellationToken token);
 
-    public Task<T> GetById(object id, CancellationToken token);
+    public Task<T> GetByIdAsync(object id, CancellationToken token);
 
-    public T Insert(T obj, CancellationToken token);
+    public T Insert(T obj);
 
-    public T Update(T obj, CancellationToken token);
+    public T Update(T obj);
 
-    public Task Delete(object id, CancellationToken token);
+    public void Delete(T entity);
 
 }

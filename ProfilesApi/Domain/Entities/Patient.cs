@@ -1,12 +1,12 @@
 namespace Domain.Entities;
 
-public class Patient : User
+public class Patient : BaseUserModel
 {
 
-    public string? PatientFirstName { get; set; }
-    public string? PatientMiddleName { get; set; }
-    public string? PatientLastName { get; set; }
-    public DateTime PatientDateBirth { get; set; }
-    public Guid Profile_ID { get; set; }
+    public string? FirstName { get; set; }
+    public string? MiddleName { get; set; }
+    public string? LastName { get; set; }
+    public DateTime DateBirth { get; set; }
+    public Guid ProfileId { get; set; }
 
 }
