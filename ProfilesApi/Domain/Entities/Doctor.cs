@@ -1,6 +1,6 @@
 namespace Domain.Entities;
 
-public class Doctor : BaseUserModel
+public sealed class Doctor : BaseUserModel
 {
 
     public string? FirstName { get; set; }

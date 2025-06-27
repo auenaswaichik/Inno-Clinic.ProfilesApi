@@ -4,6 +4,7 @@ using Domain.Interfaces.IRepositories;
 using FluentValidation;
 using Infrastructure.DbContexts;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Connections;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Extensions;
@@ -28,9 +29,9 @@ public static class ServiceExtensions
 
     }
 
-    public static void ConfigureDataBaseContext(this IServiceCollection services, string connection)
+    public static void ConfigureDataBaseContext(this IServiceCollection services, IConfiguration connection)
     {
-        services.AddDbContext<ProfilesApiDbContext>(options => options.UseSqlServer(connection));
+        services.AddDbContext<ProfilesApiDbContext>(options => options.UseSqlServer(connection.GetConnectionString("DataBaseUrl")));
     }
 
     public static void ConfigureValidators(this IServiceCollection services)
