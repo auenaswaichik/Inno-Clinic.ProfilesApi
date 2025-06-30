@@ -24,6 +24,7 @@ public class DoctorController : ControllerBase
     public async Task<ActionResult<List<DoctorDTO>>> GetDoctors()
     {
         var query = new GetAllDoctorsQuery();
+
         return Ok(await _mediator.Send(query));
     }
 
@@ -31,6 +32,7 @@ public class DoctorController : ControllerBase
     public async Task<ActionResult<DoctorDTO>> GetDoctorById(Guid id)
     {
         var query = new GetDoctorByIdQuery() { Id = id };
+        
         return Ok(await _mediator.Send(query));
     }
 
@@ -50,7 +52,9 @@ public class DoctorController : ControllerBase
     public async Task<ActionResult<DoctorDTO>> DeleteDoctor(Guid id)
     {
         var command = new DeleteDoctorCommand() { Id = id };
+
         await _mediator.Send(command);
+        
         return Ok();
     }    
 

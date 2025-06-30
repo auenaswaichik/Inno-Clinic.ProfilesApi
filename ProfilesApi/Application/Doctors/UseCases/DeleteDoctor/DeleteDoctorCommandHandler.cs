@@ -1,6 +1,3 @@
-using Application.Doctors.Models;
-using Application.Doctors.UseCases.GetDoctorById;
-using Domain.Entities;
 using Domain.Interfaces.IRepositories;
 using MediatR;
 
@@ -8,7 +5,6 @@ namespace Application.Doctors.UseCases.DeleteDoctor;
 
 public class DeleteDoctorCommandHandler : IRequestHandler<DeleteDoctorCommand>
 {
-
     private readonly IDoctorRepository _doctorRepository;
     private readonly IUnitOfWork _unitOfWork;
 
@@ -21,6 +17,7 @@ public class DeleteDoctorCommandHandler : IRequestHandler<DeleteDoctorCommand>
     public async Task Handle(DeleteDoctorCommand request, CancellationToken token)
     {
         var doctor = await _doctorRepository.GetByIdAsync(request.Id, token);
+        
         _doctorRepository.Delete(doctor);
         await _unitOfWork.SaveAsync();
     }

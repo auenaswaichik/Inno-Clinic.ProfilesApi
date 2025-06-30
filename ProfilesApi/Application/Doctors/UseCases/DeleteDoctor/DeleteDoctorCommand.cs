@@ -1,4 +1,3 @@
-using Application.Doctors.Models;
 using MediatR;
 
 namespace Application.Doctors.UseCases.DeleteDoctor;

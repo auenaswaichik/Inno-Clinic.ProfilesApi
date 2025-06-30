@@ -7,7 +7,6 @@ namespace Application.Doctors.UseCases.UpdateDoctor;
 
 public class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCommand, DoctorDTO>
 {
-
     private readonly IDoctorRepository _doctorRepository;
     private readonly IUnitOfWork _unitOfWork;
 
@@ -30,8 +29,10 @@ public class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCommand, D
             SpecializationId = request.SpecializationId,
             OfficeId = request.OfficeId
         };
+
         var updatedDoctor = _doctorRepository.Update(doctor);
         await _unitOfWork.SaveAsync();
+
         return new DoctorDTO(
                     updatedDoctor.FirstName,
                     updatedDoctor.LastName,

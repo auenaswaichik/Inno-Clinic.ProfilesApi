@@ -5,7 +5,5 @@ namespace Application.Doctors.UseCases.GetDoctorById;
 
 public class GetDoctorByIdQuery : IRequest<DoctorDTO>
 {
-
     public Guid Id;
-
 }

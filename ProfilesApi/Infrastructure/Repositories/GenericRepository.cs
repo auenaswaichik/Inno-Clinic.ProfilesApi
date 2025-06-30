@@ -7,7 +7,6 @@ namespace Infrastructure.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseUserModel
 {
-
     private readonly ProfilesApiDbContext _context;
 
     public GenericRepository(ProfilesApiDbContext context)
@@ -41,5 +40,4 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseUserMode
         _context.Set<T>().Update(obj);
         return obj;
     }
-
 }

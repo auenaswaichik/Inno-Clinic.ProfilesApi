@@ -7,10 +7,8 @@ namespace Infrastructure.Repositories;
 
 public class DoctorRepository : GenericRepository<Doctor>, IDoctorRepository
 {
-
     public DoctorRepository(ProfilesApiDbContext context) : base(context)
     {
 
     }
-
 }

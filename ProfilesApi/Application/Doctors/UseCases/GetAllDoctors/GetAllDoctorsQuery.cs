@@ -1,5 +1,4 @@
 using Application.Doctors.Models;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.Doctors.UseCases.GetAllDoctors;

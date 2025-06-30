@@ -6,7 +6,6 @@ namespace Application.Doctors.UseCases.GetAllDoctors;
 
 public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, List<DoctorDTO>>
 {
-    
     private readonly IDoctorRepository _doctorRepository;
 
     public GetAllDoctorsQueryHandler(IDoctorRepository repository)
@@ -17,6 +16,7 @@ public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, Lis
     public async Task<List<DoctorDTO>> Handle(GetAllDoctorsQuery request, CancellationToken token)
     {
         var doctorsList = await _doctorRepository.GetAllAsync(token);
+        
         return doctorsList
             .Select(m =>
                 new DoctorDTO(

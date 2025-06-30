@@ -9,5 +9,4 @@ public class CreateDoctorCommand : IRequest<DoctorDTO>
     public string? LastName { get; set; }
     public DateTime DateBirth { get; set; }
     public DateTime CareerStartYear { get; set; }
-
 }

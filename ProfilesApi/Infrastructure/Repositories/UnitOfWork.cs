@@ -5,7 +5,6 @@ namespace Infrastructure.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
-
     private readonly ProfilesApiDbContext _context;
 
     public UnitOfWork(ProfilesApiDbContext context)
@@ -27,5 +26,4 @@ public class UnitOfWork : IUnitOfWork
     {
         _context.ChangeTracker.Clear();
     }
-
 }

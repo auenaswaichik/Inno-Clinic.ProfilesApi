@@ -7,7 +7,6 @@ namespace Application.Doctors.UseCases.CreateDoctor;
 
 public class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCommand, DoctorDTO>
 {
-
     private readonly IDoctorRepository _doctorRepository;
     private readonly IUnitOfWork _unitOfWork;
 
@@ -26,8 +25,10 @@ public class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCommand, D
             DateBirth = request.DateBirth,
             CareerStartYear = request.CareerStartYear
         };
+
         var createdDoctor = _doctorRepository.Insert(doctor);
         await _unitOfWork.SaveAsync();
+
         return new DoctorDTO(
                     createdDoctor.FirstName,
                     createdDoctor.LastName,
