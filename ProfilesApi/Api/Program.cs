@@ -1,10 +1,4 @@
-using Infrastructure.Data.DbContexts;
-using Microsoft.EntityFrameworkCore;
-using DotNetEnv;
-using Domain.Interfaces.IManagers;
-using Infrastructure.Mangers;
-using Domain.Interfaces.IRepositories;
-using Infrastructure.Repositories;
+using Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,16 +6,11 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-Env.Load();
-
-var connection = Environment.GetEnvironmentVariable("DATABASE_URL");
-
-builder.Services.AddDbContext<ProfilesApiDbContext>(options => options.UseSqlServer(connection));
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-builder.Services.AddScoped<IPatientRepository, PatientRepository>();
-builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.ConfigureRepositories();
+builder.Services.ConfigureMediatr();
+builder.Services.ConfigureValidators();
+builder.Services.ConfigureDataBaseContext(builder.Configuration);
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -33,5 +22,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
 
 app.Run();

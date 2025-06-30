@@ -1,7 +1,11 @@
-namespace Domain.Entities;
+using Application.Doctors.Models;
+using MediatR;
 
-public sealed class Doctor : BaseUserModel
+namespace Application.Doctors.UseCases.UpdateDoctor;
+
+public class UpdateDoctorCommand : IRequest<DoctorDTO>
 {
+    public Guid Id { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public DateTime DateBirth { get; set; }
@@ -9,4 +13,5 @@ public sealed class Doctor : BaseUserModel
     public Guid ProfileId { get; set; }
     public Guid SpecializationId { get; set; }
     public Guid OfficeId { get; set; }
+
 }

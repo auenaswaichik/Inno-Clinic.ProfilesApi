@@ -1,47 +1,43 @@
 using Domain.Entities;
 using Domain.Interfaces.IRepositories;
-using Infrastructure.Data.DbContexts;
+using Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class GenericRepository<T> : IGenericRepository<T> where T : User
+public class GenericRepository<T> : IGenericRepository<T> where T : BaseUserModel
 {
     private readonly ProfilesApiDbContext _context;
-    private readonly DbSet<T> _table;
+
     public GenericRepository(ProfilesApiDbContext context)
     {
         _context = context;
-        _table = _context.Set<T>();
-    }
-    public async Task Delete(object id, CancellationToken token)
-    {
-        _table.Remove
-        (
-            await GetById(id, token)
-        );
     }
 
-    public async Task<List<T>> GetAll(CancellationToken token)
+    public void Delete(T entity)
     {
-        return await _table.ToListAsync();
+        _context.Set<T>().Remove(entity);
     }
 
-    public async Task<T> GetById(object id, CancellationToken token)
+    public async Task<List<T>> GetAllAsync(CancellationToken token)
     {
-        return await _table.FindAsync(id);
+        return await _context.Set<T>().AsNoTracking().ToListAsync();
     }
 
-    public T Insert(T obj, CancellationToken token)
+    public async Task<T> GetByIdAsync(object id, CancellationToken token)
     {
-        _table.Add(obj);
+        return await _context.Set<T>().FindAsync(id);
+    }
+
+    public T Insert(T obj)
+    {
+        _context.Set<T>().Add(obj);
         return obj;
     }
 
-    public T Update(T obj, CancellationToken token)
+    public T Update(T obj)
     {
-        _table.Attach(obj);
-        _context.Entry(obj).State = EntityState.Modified;
+        _context.Set<T>().Update(obj);
         return obj;
     }
 }
