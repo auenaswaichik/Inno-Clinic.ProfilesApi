@@ -1,4 +1,5 @@
 using Api.Extensions;
+using Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.ConfigureMiddleware();
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
