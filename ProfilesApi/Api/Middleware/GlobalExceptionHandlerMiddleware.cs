@@ -30,21 +30,14 @@ public class GlobalExceptionHandlerMiddleware
     {
         httpContext.Response.ContentType = "application/json";
 
-        if (exception is NotFoundException)
+        httpContext.Response.StatusCode = exception switch
         {
-            httpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            await httpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = exception.Message }));
-        }
-        else if (exception is BadRequestException)
-        {
-            httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            await httpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = exception.Message }));
-        }
-        else
-        {
-            httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-            await httpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = exception.Message }));
-        }
+            NotFoundException => StatusCodes.Status404NotFound,
+            BadRequestException => StatusCodes.Status400BadRequest,
+            _ => StatusCodes.Status500InternalServerError
+        };
+
+        await httpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = exception.Message }));
         
     }
 }
