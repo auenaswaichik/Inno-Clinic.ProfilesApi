@@ -23,12 +23,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseUserMode
     {
         return await _context.Set<T>().AsNoTracking().ToListAsync();
     }
-
-    public async Task<T> GetByIdAsync(object id, CancellationToken token)
-    {
-        return await _context.Set<T>().FindAsync(id);
-    }
-
     public T Insert(T obj)
     {
         _context.Set<T>().Add(obj);
