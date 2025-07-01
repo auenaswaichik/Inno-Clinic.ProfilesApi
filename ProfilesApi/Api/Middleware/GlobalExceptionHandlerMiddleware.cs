@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Http.HttpResults;
+using Domain.Exceptions;
 
 namespace Api.Middleware;
 
@@ -30,12 +30,12 @@ public class GlobalExceptionHandlerMiddleware
     {
         httpContext.Response.ContentType = "application/json";
 
-        if (exception is NullReferenceException)
+        if (exception is NotFoundException)
         {
             httpContext.Response.StatusCode = StatusCodes.Status404NotFound;
             await httpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = exception.Message }));
         }
-        else if (exception is BadHttpRequestException)
+        else if (exception is BadRequestException)
         {
             httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             await httpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = exception.Message }));
