@@ -42,7 +42,7 @@ public class GlobalExceptionHandlerMiddleware
         }
         else
         {
-            httpContext.Response.StatusCode = StatusCodes.Status501NotImplemented;
+            httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
             await httpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = exception.Message }));
         }
         
