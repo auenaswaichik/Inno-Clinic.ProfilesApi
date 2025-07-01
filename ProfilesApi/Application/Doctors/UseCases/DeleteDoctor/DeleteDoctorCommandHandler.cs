@@ -1,3 +1,4 @@
+using Domain.Exceptions;
 using Domain.Interfaces.IRepositories;
 using MediatR;
 
@@ -16,8 +17,21 @@ public class DeleteDoctorCommandHandler : IRequestHandler<DeleteDoctorCommand>
 
     public async Task Handle(DeleteDoctorCommand request, CancellationToken token)
     {
+        var validations = new DeleteDoctorCommandValidator();
+        var valRes = validations.Validate(request);
+
+        if (!valRes.IsValid)
+        {
+            throw new BadRequestException("Incorrect Id");
+        }
+
         var doctor = await _doctorRepository.GetByIdAsync(request.Id, token);
-        
+
+        if (doctor is null)
+        {
+            throw new NotFoundException("There is no such doctor to delete");
+        }
+
         _doctorRepository.Delete(doctor);
         await _unitOfWork.SaveAsync();
     }

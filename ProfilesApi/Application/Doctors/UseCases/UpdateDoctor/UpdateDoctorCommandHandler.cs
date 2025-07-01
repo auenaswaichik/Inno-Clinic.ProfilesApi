@@ -1,5 +1,6 @@
 using Application.Doctors.Models;
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Interfaces.IRepositories;
 using MediatR;
 
@@ -18,6 +19,14 @@ public class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCommand, D
 
     public async Task<DoctorDTO> Handle(UpdateDoctorCommand request, CancellationToken token)
     {
+        var validations = new UpdateDoctorCommandValidator();
+        var valRes = validations.Validate(request);
+
+        if (!valRes.IsValid)
+        {
+            throw new BadRequestException("Bad request for update doctor command");
+        }
+
         var doctor = new Doctor()
         {
             Id = request.Id,
