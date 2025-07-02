@@ -16,6 +16,6 @@ public class DoctorRepository : GenericRepository<Doctor>, IDoctorRepository
 
     public async Task<Doctor> GetByIdAsync(Guid id, CancellationToken token)
     {
-        return await _context.Doctors.FindAsync(id);
+        return await _context.Doctors.FirstOrDefaultAsync(m => m.Id == id);
     }
 }
