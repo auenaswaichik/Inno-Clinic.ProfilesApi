@@ -2,7 +2,6 @@ using Application.Doctors.Models;
 using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Interfaces.IRepositories;
-using FluentValidation;
 using MediatR;
 
 namespace Application.Doctors.UseCases.CreateDoctor;

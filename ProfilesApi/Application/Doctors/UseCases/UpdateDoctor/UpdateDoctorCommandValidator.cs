@@ -15,13 +15,13 @@ public class UpdateDoctorCommandValidator : AbstractValidator<UpdateDoctorComman
             .WithMessage("Your last name is not in the length range(from 2 to 50 symbols)");
             
         RuleFor(m => m.DateBirth)
-            .LessThan(DateTime.Now)
+            .LessThan(DateTime.Now.AddYears(-27))
             .GreaterThan(DateTime.Now.AddYears(-100))
             .WithMessage("Incorrect date of birth");
             
         RuleFor(m => m.CareerStartYear)
             .LessThan(DateTime.Now)
-            .GreaterThan(DateTime.Now.AddYears(-100))
+            .GreaterThan(DateTime.Now.AddYears(-70))
             .WithMessage("Incorrect date of career start");
     }
 }

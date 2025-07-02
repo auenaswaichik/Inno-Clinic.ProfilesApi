@@ -38,6 +38,5 @@ public class GlobalExceptionHandlerMiddleware
         };
 
         await httpContext.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new { error = exception.Message }));
-        
     }
 }
