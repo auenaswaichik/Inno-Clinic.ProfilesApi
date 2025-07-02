@@ -1,3 +1,4 @@
+using System.Text;
 using Application.Doctors.Models;
 using Domain.Entities;
 using Domain.Exceptions;
@@ -26,7 +27,14 @@ public class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCommand, D
 
         if (!validationResult.IsValid)
         {
-            throw new BadRequestException("Doctor create command is invalid");
+            var stringBuilder = new StringBuilder();
+
+            foreach (var error in validationResult.Errors)
+            {
+                stringBuilder.AppendLine(error.ErrorMessage);
+            }
+
+            throw new BadRequestException(stringBuilder.ToString());
         }
 
         var doctor = new Doctor()
