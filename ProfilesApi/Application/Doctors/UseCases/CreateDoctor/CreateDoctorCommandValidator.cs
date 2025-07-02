@@ -16,12 +16,12 @@ public class CreateDoctorCommandValidator : AbstractValidator<CreateDoctorComman
             
         RuleFor(m => m.DateBirth)
             .LessThan(DateTime.Now.AddYears(-27))
-            .GreaterThan(DateTime.Now.AddYears(-100))
+            .GreaterThan(DateTime.Now.AddYears(-70))
             .WithMessage("Incorrect date of birth");
             
         RuleFor(m => m.CareerStartYear)
             .LessThan(DateTime.Now)
-            .GreaterThan(DateTime.Now.AddYears(-70))
+            .GreaterThan(DateTime.Now.AddYears(-50))
             .WithMessage("Incorrect date of career start");
     }
 }
