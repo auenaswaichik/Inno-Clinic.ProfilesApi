@@ -1,5 +1,6 @@
 using Domain.Exceptions;
 using Domain.Interfaces.IRepositories;
+using FluentValidation;
 using MediatR;
 
 namespace Application.Doctors.UseCases.DeleteDoctor;
@@ -8,19 +9,20 @@ public class DeleteDoctorCommandHandler : IRequestHandler<DeleteDoctorCommand>
 {
     private readonly IDoctorRepository _doctorRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IValidator<DeleteDoctorCommand> _validator;
 
-    public DeleteDoctorCommandHandler(IDoctorRepository doctorRepository, IUnitOfWork unitOfWork)
+    public DeleteDoctorCommandHandler(IDoctorRepository doctorRepository, IUnitOfWork unitOfWork, IValidator<DeleteDoctorCommand> validator)
     {
         _doctorRepository = doctorRepository;
         _unitOfWork = unitOfWork;
+        _validator = validator;
     }
 
     public async Task Handle(DeleteDoctorCommand request, CancellationToken token)
     {
-        var validations = new DeleteDoctorCommandValidator();
-        var valRes = validations.Validate(request);
+        var validationResult = _validator.Validate(request);
 
-        if (!valRes.IsValid)
+        if (!validationResult.IsValid)
         {
             throw new BadRequestException("Incorrect Id");
         }

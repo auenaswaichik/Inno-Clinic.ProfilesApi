@@ -2,6 +2,7 @@ using Application.Doctors.Models;
 using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Interfaces.IRepositories;
+using FluentValidation;
 using MediatR;
 
 namespace Application.Doctors.UseCases.UpdateDoctor;
@@ -10,19 +11,20 @@ public class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCommand, D
 {
     private readonly IDoctorRepository _doctorRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IValidator<UpdateDoctorCommand> _validator;
 
-    public UpdateDoctorCommandHandler(IDoctorRepository doctorRepository, IUnitOfWork unitOfWork)
+    public UpdateDoctorCommandHandler(IDoctorRepository doctorRepository, IUnitOfWork unitOfWork, IValidator<UpdateDoctorCommand> validator)
     {
         _doctorRepository = doctorRepository;
         _unitOfWork = unitOfWork;
+        _validator = validator;
     }
 
     public async Task<DoctorDTO> Handle(UpdateDoctorCommand request, CancellationToken token)
     {
-        var validations = new UpdateDoctorCommandValidator();
-        var valRes = validations.Validate(request);
+        var validationResult = _validator.Validate(request);
 
-        if (!valRes.IsValid)
+        if (!validationResult.IsValid)
         {
             throw new BadRequestException("Bad request for update doctor command");
         }

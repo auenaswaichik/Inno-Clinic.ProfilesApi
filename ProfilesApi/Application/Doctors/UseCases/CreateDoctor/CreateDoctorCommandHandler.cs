@@ -2,6 +2,7 @@ using Application.Doctors.Models;
 using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Interfaces.IRepositories;
+using FluentValidation;
 using MediatR;
 
 namespace Application.Doctors.UseCases.CreateDoctor;
@@ -10,19 +11,20 @@ public class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCommand, D
 {
     private readonly IDoctorRepository _doctorRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IValidator<CreateDoctorCommand> _validator;
 
-    public CreateDoctorCommandHandler(IDoctorRepository doctorRepository, IUnitOfWork unitOfWork)
+    public CreateDoctorCommandHandler(IDoctorRepository doctorRepository, IUnitOfWork unitOfWork, IValidator<CreateDoctorCommand> validator)
     {
         _doctorRepository = doctorRepository;
         _unitOfWork = unitOfWork;
+        _validator = validator;
     }
 
     public async Task<DoctorDTO> Handle(CreateDoctorCommand request, CancellationToken token)
     {
-        var validations = new CreateDoctorCommandValidator();
-        var valRes = validations.Validate(request);
+        var validationResult = _validator.Validate(request);
 
-        if (!valRes.IsValid)
+        if (!validationResult.IsValid)
         {
             throw new BadRequestException("Doctor create command is invalid");
         }
