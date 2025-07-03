@@ -8,9 +8,9 @@ public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, Lis
 {
     private readonly IDoctorRepository _doctorRepository;
 
-    public GetAllDoctorsQueryHandler(IDoctorRepository repository)
+    public GetAllDoctorsQueryHandler(IDoctorRepository doctorRepository)
     {
-        _doctorRepository = repository;
+        _doctorRepository = doctorRepository;
     }
 
     public async Task<List<DoctorDTO>> Handle(GetAllDoctorsQuery request, CancellationToken token)
