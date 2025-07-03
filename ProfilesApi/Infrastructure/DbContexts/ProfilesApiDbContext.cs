@@ -24,7 +24,11 @@ public class ProfilesApiDbContext : DbContext
         modelBuilder.Entity<Patient>()
             .HasKey(m => m.Id);
 
-        modelBuilder.Entity<Admin>().HasData();
+        modelBuilder.Entity<Admin>().HasData(
+            new Patient {Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"), FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2001, 11, 12)},
+            new Patient {Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"), FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2001, 11, 12)},
+            new Patient {Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"), FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2001, 11, 12)}
+        );
 
         modelBuilder.Entity<Patient>().HasData();
         
