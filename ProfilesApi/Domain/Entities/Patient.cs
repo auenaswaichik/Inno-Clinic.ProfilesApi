@@ -6,4 +6,6 @@ public sealed class Patient : BaseUserModel
     public string? LastName { get; set; }
     public DateTime DateBirth { get; set; }
     public Guid ProfileId { get; set; }
+    public bool IsDeleted { get; set; }
+    public DateTime? DeletedAt { get; set; }
 }

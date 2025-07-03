@@ -35,6 +35,6 @@ public class DeleteDoctorCommandHandler : IRequestHandler<DeleteDoctorCommand>
         }
 
         _doctorRepository.Delete(doctor);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(token);
     }
 }

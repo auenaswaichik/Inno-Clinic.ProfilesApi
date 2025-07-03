@@ -16,12 +16,15 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseUserMode
 
     public void Delete(T entity)
     {
-        _context.Set<T>().Remove(entity);
+        _context.Set<T>()
+            .Remove(entity);
     }
 
     public async Task<List<T>> GetAllAsync(CancellationToken token)
     {
-        return await _context.Set<T>().AsNoTracking().ToListAsync();
+        return await _context.Set<T>()
+            .AsNoTracking()
+            .ToListAsync();
     }
     public T Insert(T obj)
     {
@@ -31,7 +34,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseUserMode
 
     public T Update(T obj)
     {
-        _context.Set<T>().Update(obj);
+        _context.Set<T>()
+            .Update(obj);
         return obj;
     }
 }

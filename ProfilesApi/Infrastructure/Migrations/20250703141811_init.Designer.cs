@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ProfilesApiDbContext))]
-    [Migration("20250703121651_init")]
+    [Migration("20250703141811_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -127,13 +127,16 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("DateBirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("MiddleName")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ProfileId")
@@ -149,6 +152,7 @@ namespace Infrastructure.Migrations
                             Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"),
                             DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ilia",
+                            IsDeleted = false,
                             LastName = "Kustovich",
                             ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -157,6 +161,7 @@ namespace Infrastructure.Migrations
                             Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"),
                             DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ilia",
+                            IsDeleted = false,
                             LastName = "Kustovich",
                             ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -165,6 +170,7 @@ namespace Infrastructure.Migrations
                             Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"),
                             DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ilia",
+                            IsDeleted = false,
                             LastName = "Kustovich",
                             ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
                         });

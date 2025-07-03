@@ -22,20 +22,49 @@ public class ProfilesApiDbContext : DbContext
             .HasKey(m => m.Id);
 
         modelBuilder.Entity<Patient>()
+            .HasQueryFilter(m => !m.IsDeleted)
             .HasKey(m => m.Id);
 
         modelBuilder.Entity<Admin>().HasData();
 
         modelBuilder.Entity<Patient>().HasData(
             new Patient { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"), FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2001, 11, 12) },
-            new Patient {Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"), FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2001, 11, 12)},
-            new Patient {Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"), FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2001, 11, 12)}
+            new Patient { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"), FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2001, 11, 12) },
+            new Patient { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"), FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2001, 11, 12) }
         );
-        
+
         modelBuilder.Entity<Doctor>().HasData(
-            new Doctor {Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"), FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12)},
-            new Doctor {Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7"), FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12)},
-            new Doctor {Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa8"), FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12)}
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"), FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12) },
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7"), FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12) },
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa8"), FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12) }
         );
+    }
+
+    public override async Task<int> SaveChangesAsync(CancellationToken token)
+    {
+        HandleSoftDelete();
+        return await base.SaveChangesAsync();
+    }
+
+    public override int SaveChanges()
+    {
+        HandleSoftDelete();
+        return base.SaveChanges();
+    }
+
+    private void HandleSoftDelete()
+    {
+        var entries = ChangeTracker.Entries()
+                .Where(m => m.State == EntityState.Deleted && m.Entity is Patient);
+
+        foreach (var entry in entries)
+        {
+            entry.State = EntityState.Modified;
+            if (entry.Entity is Patient softDeletePatient)
+            {
+                softDeletePatient.IsDeleted = true;
+                softDeletePatient.DeletedAt = DateTime.UtcNow;
+            }
+        }
     }
 }

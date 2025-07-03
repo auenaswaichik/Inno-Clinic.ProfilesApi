@@ -45,7 +45,7 @@ public class CreatePatientCommandHandler : IRequestHandler<CreatePatientCommand,
         };
 
         var createdPatient = _patientRepository.Insert(patient);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(token);
 
         return new PatientDTO(
                     createdPatient.FirstName,

@@ -47,7 +47,7 @@ public class UpdatePatientCommandHandler : IRequestHandler<UpdatePatientCommand,
         };
 
         var updatedPatient = _patientRepository.Update(patient);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(token);
 
         return new PatientDTO(
                     updatedPatient.FirstName,

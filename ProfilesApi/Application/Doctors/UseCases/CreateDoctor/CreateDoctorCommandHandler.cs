@@ -46,7 +46,7 @@ public class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCommand, D
         };
 
         var createdDoctor = _doctorRepository.Insert(doctor);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(token);
 
         return new DoctorDTO(
                     createdDoctor.FirstName,

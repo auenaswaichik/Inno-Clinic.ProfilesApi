@@ -35,6 +35,6 @@ public class DeletePatientCommandHandler : IRequestHandler<DeletePatientCommand>
         }
 
         _patientRepository.Delete(patient);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(token);
     }
 }

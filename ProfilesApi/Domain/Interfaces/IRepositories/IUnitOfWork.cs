@@ -2,7 +2,7 @@ namespace Domain.Interfaces.IRepositories;
 
 public interface IUnitOfWork
 {
-    void Rollback();
-    Task SaveAsync();
     void Save();
+    Task SaveAsync(CancellationToken token);
+    void Rollback();
 }

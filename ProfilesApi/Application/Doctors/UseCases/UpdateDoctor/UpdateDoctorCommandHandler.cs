@@ -50,7 +50,7 @@ public class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCommand, D
         };
 
         var updatedDoctor = _doctorRepository.Update(doctor);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(token);
 
         return new DoctorDTO(
                     updatedDoctor.FirstName,
