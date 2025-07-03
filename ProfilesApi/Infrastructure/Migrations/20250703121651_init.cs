@@ -72,6 +72,16 @@ namespace Infrastructure.Migrations
                     { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7"), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pasha", "Swagovich", new Guid("00000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-000000000000") },
                     { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa8"), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pasha", "Swagovich", new Guid("00000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-000000000000") }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Patients",
+                columns: new[] { "Id", "DateBirth", "FirstName", "LastName", "MiddleName", "ProfileId" },
+                values: new object[,]
+                {
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ilia", "Kustovich", null, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ilia", "Kustovich", null, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ilia", "Kustovich", null, new Guid("00000000-0000-0000-0000-000000000000") }
+                });
         }
 
         /// <inheritdoc />

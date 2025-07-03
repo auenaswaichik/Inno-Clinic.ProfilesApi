@@ -139,6 +139,32 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Patients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"),
+                            DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ilia",
+                            LastName = "Kustovich",
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"),
+                            DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ilia",
+                            LastName = "Kustovich",
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"),
+                            DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ilia",
+                            LastName = "Kustovich",
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        });
                 });
 #pragma warning restore 612, 618
         }
