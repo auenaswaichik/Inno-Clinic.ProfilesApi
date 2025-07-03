@@ -6,12 +6,12 @@ using MediatR;
 
 namespace Application.Patients.UseCases.GetPatientById;
 
-public class GetPatientByIdHandler : IRequestHandler<GetPatientByIdQuery, PatientDTO>
+public class GetPatientByIdQueryHandler : IRequestHandler<GetPatientByIdQuery, PatientDTO>
 {
     private readonly IPatientRepository _patientRepository;
     private readonly IValidator<GetPatientByIdQuery> _validator;
 
-    public GetPatientByIdHandler(IPatientRepository patientRepository, IValidator<GetPatientByIdQuery> validator)
+    public GetPatientByIdQueryHandler(IPatientRepository patientRepository, IValidator<GetPatientByIdQuery> validator)
     {
         _patientRepository = patientRepository;
         _validator = validator;

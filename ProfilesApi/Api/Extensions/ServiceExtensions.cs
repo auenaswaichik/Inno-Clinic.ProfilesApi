@@ -1,5 +1,5 @@
-using Application.Doctors.UseCases.GetAllDoctors;
 using Application.Doctors.UseCases.GetDoctorById;
+using Application.Patients.UseCases.GetPatientById;
 using Domain.Interfaces.IRepositories;
 using FluentValidation;
 using Infrastructure.DbContexts;
@@ -22,7 +22,12 @@ public static class ServiceExtensions
     {
         services.AddMediatR(cfg =>
         {
-            var applicationAssembly = typeof(GetAllDoctorsQuery).Assembly;
+            var applicationAssembly = typeof(GetDoctorByIdQuery).Assembly;
+            cfg.RegisterServicesFromAssembly(applicationAssembly);
+        });
+        services.AddMediatR(cfg =>
+        {
+            var applicationAssembly = typeof(GetPatientByIdQuery).Assembly;
             cfg.RegisterServicesFromAssembly(applicationAssembly);
         });
     }
@@ -34,6 +39,7 @@ public static class ServiceExtensions
 
     public static void ConfigureValidators(this IServiceCollection services)
     {
-        services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly);   
+        services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly); 
+        services.AddValidatorsFromAssembly(typeof(GetPatientByIdQueryValidator).Assembly);   
     }
 }
