@@ -21,7 +21,7 @@ public class GlobalExceptionHandlerMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Unhabdled exception");
+            _logger.LogError(ex.Message, "Unhabdled exception");
             await HandleExceptionAsync(httpContext, ex);
         }
     }

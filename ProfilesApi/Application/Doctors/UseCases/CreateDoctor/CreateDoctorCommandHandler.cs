@@ -44,7 +44,6 @@ public class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCommand, D
             DateBirth = request.DateBirth,
             CareerStartYear = request.CareerStartYear
         };
- 
 
         var createdDoctor = _doctorRepository.Insert(doctor);
         await _unitOfWork.SaveAsync();
