@@ -4,6 +4,7 @@ using Application.Patients.UseCases.DeletePatient;
 using Application.Patients.UseCases.GetAllPatients;
 using Application.Patients.UseCases.GetPatientById;
 using Application.Patients.UseCases.UpdatePatient;
+using Domain.Entities.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,11 +22,13 @@ public class PatientController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<PatientDTO>>> GetPatients()
+    public async Task<ActionResult<PagedList<PatientDTO>>> GetPatients([FromQuery] int pageIndex, [FromQuery] int pageSize)
     {
-        var query = new GetAllPatientsQuery();
+        var query = new GetAllPatientsQuery() {PageIndex = pageIndex, PageSize = pageSize};
 
-        return Ok(await _mediator.Send(query));
+        var response = await _mediator.Send(query);
+
+        return Ok(response.Items);
     }
 
     [HttpGet("{id}")]

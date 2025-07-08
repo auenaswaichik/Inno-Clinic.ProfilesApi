@@ -1,10 +1,11 @@
 using MediatR;
 using Domain.Interfaces.IRepositories;
 using Application.Doctors.Models;
+using Domain.Entities.Extensions;
 
 namespace Application.Doctors.UseCases.GetAllDoctors;
 
-public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, List<DoctorDTO>>
+public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, PagedList<DoctorDTO>>
 {
     private readonly IDoctorRepository _doctorRepository;
 
@@ -13,11 +14,11 @@ public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, Lis
         _doctorRepository = doctorRepository;
     }
 
-    public async Task<List<DoctorDTO>> Handle(GetAllDoctorsQuery request, CancellationToken token)
+    public async Task<PagedList<DoctorDTO>> Handle(GetAllDoctorsQuery request, CancellationToken token)
     {
         var doctorsList = await _doctorRepository.GetAllAsync(token);
-        
-        return doctorsList
+
+        var doctorsDTOsList = doctorsList
             .Select(m =>
                 new DoctorDTO(
                     m.FirstName,
@@ -29,5 +30,9 @@ public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, Lis
                     m.OfficeId
                 ))
             .ToList();
+
+        var doctorsPage = PagedList<DoctorDTO>.Create(doctorsDTOsList, request.PageIndex, request.PageSize);
+
+        return doctorsPage;
     }
 }
