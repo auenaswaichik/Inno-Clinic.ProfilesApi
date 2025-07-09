@@ -46,6 +46,35 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"),
+                            DateBirth = new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Admin",
+                            LastName = "Abaldet",
+                            OfficeId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"),
+                            DateBirth = new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Admin",
+                            LastName = "Abaldet",
+                            OfficeId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"),
+                            DateBirth = new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Admin",
+                            LastName = "Abaldet",
+                            OfficeId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Doctor", b =>
@@ -147,7 +176,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"),
-                            DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateBirth = new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ilia",
                             IsDeleted = false,
                             LastName = "Kustovich",
@@ -156,7 +185,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"),
-                            DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateBirth = new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ilia",
                             IsDeleted = false,
                             LastName = "Kustovich",
@@ -165,7 +194,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"),
-                            DateBirth = new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateBirth = new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ilia",
                             IsDeleted = false,
                             LastName = "Kustovich",

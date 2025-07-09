@@ -65,6 +65,16 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Admins",
+                columns: new[] { "Id", "DateBirth", "FirstName", "LastName", "OfficeId", "ProfileId" },
+                values: new object[,]
+                {
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"), new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin", "Abaldet", new Guid("00000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"), new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin", "Abaldet", new Guid("00000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"), new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin", "Abaldet", new Guid("00000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-000000000000") }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Doctors",
                 columns: new[] { "Id", "CareerStartYear", "DateBirth", "FirstName", "LastName", "OfficeId", "ProfileId", "SpecializationId" },
                 values: new object[,]
@@ -79,9 +89,9 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "DateBirth", "DeletedAt", "FirstName", "IsDeleted", "LastName", "ProfileId" },
                 values: new object[,]
                 {
-                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ilia", false, "Kustovich", new Guid("00000000-0000-0000-0000-000000000000") },
-                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ilia", false, "Kustovich", new Guid("00000000-0000-0000-0000-000000000000") },
-                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"), new DateTime(2001, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ilia", false, "Kustovich", new Guid("00000000-0000-0000-0000-000000000000") }
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"), new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ilia", false, "Kustovich", new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"), new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ilia", false, "Kustovich", new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"), new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ilia", false, "Kustovich", new Guid("00000000-0000-0000-0000-000000000000") }
                 });
         }
 
