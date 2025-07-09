@@ -1,3 +1,4 @@
+using Application.Admins.UseCases.GetAdminById;
 using Application.Doctors.UseCases.GetDoctorById;
 using Application.Patients.UseCases.GetPatientById;
 using Domain.Interfaces.IRepositories;
@@ -30,6 +31,11 @@ public static class ServiceExtensions
             var applicationAssembly = typeof(GetPatientByIdQuery).Assembly;
             cfg.RegisterServicesFromAssembly(applicationAssembly);
         });
+        services.AddMediatR(cfg =>
+        {
+            var applicationAssembly = typeof(GetAdminByIdQuery).Assembly;
+            cfg.RegisterServicesFromAssembly(applicationAssembly);
+        });
     }
 
     public static void ConfigureDataBaseContext(this IServiceCollection services, IConfiguration connection)
@@ -39,7 +45,8 @@ public static class ServiceExtensions
 
     public static void ConfigureValidators(this IServiceCollection services)
     {
-        services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly); 
-        services.AddValidatorsFromAssembly(typeof(GetPatientByIdQueryValidator).Assembly);   
+        services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly);
+        services.AddValidatorsFromAssembly(typeof(GetPatientByIdQueryValidator).Assembly);
+        services.AddValidatorsFromAssembly(typeof(GetAdminByIdQueryValidator).Assembly);   
     }
 }
