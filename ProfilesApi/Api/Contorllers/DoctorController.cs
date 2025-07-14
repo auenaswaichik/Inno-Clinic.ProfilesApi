@@ -27,9 +27,7 @@ public class DoctorController : ControllerBase
     {
         var query = new GetAllDoctorsQuery(){DoctorParameters = doctorParameters};
 
-        var response = await _mediator.Send(query);
-
-        return Ok(response.Items);
+        return Ok(await _mediator.Send(query));
     }
 
     [HttpGet("{id}")]

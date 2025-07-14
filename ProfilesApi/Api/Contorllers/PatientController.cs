@@ -26,10 +26,8 @@ public class PatientController : ControllerBase
     public async Task<ActionResult<PagedList<PatientDTO>>> GetPatients([FromQuery] PatientParameters patientParameters)
     {
         var query = new GetAllPatientsQuery() { PatientParameters = patientParameters };
-
-        var response = await _mediator.Send(query);
-
-        return Ok(response.Items);
+        
+        return Ok(await _mediator.Send(query));
     }
 
     [HttpGet("{id}")]

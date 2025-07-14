@@ -27,9 +27,7 @@ public class AdminController : ControllerBase
     {
         var query = new GetAllAdminsQuery() {AdminParameters = adminParameters};
 
-        var response = await _mediator.Send(query);
-
-        return Ok(response.Items);
+        return Ok(await _mediator.Send(query));
     }
 
     [HttpGet("{id}")]
