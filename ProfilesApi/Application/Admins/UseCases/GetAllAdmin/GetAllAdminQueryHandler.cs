@@ -16,7 +16,7 @@ public class GetAllAdminsQueryHandler : IRequestHandler<GetAllAdminsQuery, Paged
 
     public async Task<PagedList<AdminDTO>> Handle(GetAllAdminsQuery request, CancellationToken token)
     {
-        var adminsList = await _adminRepository.GetAllAsync(token);
+        var adminsList = await _adminRepository.GetDoctorsAsync(request.AdminParameters, token);
 
         var adminsDTOsList = adminsList
             .Select(m =>
@@ -29,8 +29,6 @@ public class GetAllAdminsQueryHandler : IRequestHandler<GetAllAdminsQuery, Paged
                 ))
             .ToList();
 
-        var adminsPage = PagedList<AdminDTO>.Create(adminsDTOsList, request.PageIndex, request.PageSize);
-
-        return adminsPage;
+        return new PagedList<AdminDTO>(adminsDTOsList, adminsList.TotalCount, adminsList.PageIndex, adminsList.PageSize);
     }
 }

@@ -32,7 +32,7 @@ public static class DoctorRepositoryExtension
             return doctors;
         }
 
-        return doctors.Where(m => m.SpecializationId == officeId);
+        return doctors.Where(m => m.OfficeId == officeId);
     }
 
     private static IQueryable<Doctor> Search(this IQueryable<Doctor> doctors, string? searchTerm)

@@ -7,6 +7,7 @@ using Application.Admins.UseCases.UpdateAdmin;
 using Domain.Entities.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Domain.RequestFeatures;
 
 namespace Api.Controllers;
 
@@ -22,9 +23,9 @@ public class AdminController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<PagedList<AdminDTO>>> GetAdmins([FromQuery] int pageIndex, [FromQuery] int pageSize)
+    public async Task<ActionResult<PagedList<AdminDTO>>> GetAdmins([FromQuery] AdminParameters adminParameters)
     {
-        var query = new GetAllAdminsQuery() {PageIndex = pageIndex, PageSize = pageSize};
+        var query = new GetAllAdminsQuery() {AdminParameters = adminParameters};
 
         var response = await _mediator.Send(query);
 
