@@ -6,6 +6,7 @@ using FluentValidation;
 using Infrastructure.DbContexts;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Api.Extensions;
 
@@ -47,6 +48,11 @@ public static class ServiceExtensions
     {
         services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly);
         services.AddValidatorsFromAssembly(typeof(GetPatientByIdQueryValidator).Assembly);
-        services.AddValidatorsFromAssembly(typeof(GetAdminByIdQueryValidator).Assembly);   
+        services.AddValidatorsFromAssembly(typeof(GetAdminByIdQueryValidator).Assembly);
+    }
+
+    public static void ConfigureSerilog(this IHostBuilder host)
+    {
+        host.UseSerilog((ctx, config) => config.ReadFrom.Configuration(ctx.Configuration));
     }
 }
