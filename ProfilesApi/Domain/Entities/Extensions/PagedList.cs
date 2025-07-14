@@ -2,7 +2,7 @@ namespace Domain.Entities.Extensions;
 
 public sealed class PagedList<T> : List<T>
 {
-    public IReadOnlyList<T> Items { get; private set; }
+    public IEnumerable<T> Items { get; private set; }
     public int TotalCount { get; private set; }
     public int PageIndex { get; private set; }
     public int PageSize { get; private set; }
@@ -11,7 +11,7 @@ public sealed class PagedList<T> : List<T>
     public bool HasPreviousPage => PageIndex > 1;
     public bool HasNextPage => PageIndex < TotalPages;
 
-    private PagedList(IReadOnlyList<T> items, int count, int pageIndex, int pageSize)
+    public PagedList(IEnumerable<T> items, int count, int pageIndex, int pageSize)
     {
         Items = items;
         TotalCount = count;

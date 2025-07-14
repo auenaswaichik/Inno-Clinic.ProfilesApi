@@ -5,6 +5,7 @@ using Application.Doctors.UseCases.GetAllDoctors;
 using Application.Doctors.UseCases.GetDoctorById;
 using Application.Doctors.UseCases.UpdateDoctor;
 using Domain.Entities.Extensions;
+using Domain.RequestFeatures;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,9 +23,9 @@ public class DoctorController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<PagedList<DoctorDTO>>> GetDoctors([FromQuery] int pageIndex, [FromQuery] int pageSize)
+    public async Task<ActionResult<PagedList<DoctorDTO>>> GetDoctors([FromQuery] DoctorParameters doctorParameters)
     {
-        var query = new GetAllDoctorsQuery(){PageIndex = pageIndex, PageSize = pageSize};
+        var query = new GetAllDoctorsQuery(){DoctorParameters = doctorParameters};
 
         var response = await _mediator.Send(query);
 

@@ -16,7 +16,7 @@ public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, Pag
 
     public async Task<PagedList<DoctorDTO>> Handle(GetAllDoctorsQuery request, CancellationToken token)
     {
-        var doctorsList = await _doctorRepository.GetAllAsync(token);
+        var doctorsList = await _doctorRepository.GetDoctorsAsync(request.DoctorParameters, token);
 
         var doctorsDTOsList = doctorsList
             .Select(m =>
@@ -28,11 +28,7 @@ public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, Pag
                     m.ProfileId,
                     m.SpecializationId,
                     m.OfficeId
-                ))
-            .ToList();
-
-        var doctorsPage = PagedList<DoctorDTO>.Create(doctorsDTOsList, request.PageIndex, request.PageSize);
-
-        return doctorsPage;
+                ));
+        return new PagedList<DoctorDTO>(doctorsDTOsList, doctorsList.TotalCount, doctorsList.PageIndex, doctorsList.PageSize);
     }
 }

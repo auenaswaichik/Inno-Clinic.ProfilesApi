@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Domain.Entities;
 using Domain.Interfaces.IRepositories;
 using Infrastructure.DbContexts;
@@ -37,5 +38,10 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseUserMode
         _context.Set<T>()
             .Update(obj);
         return obj;
+    }
+
+    public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
+    {
+        return _context.Set<T>().Where(expression).AsNoTracking();
     }
 }
