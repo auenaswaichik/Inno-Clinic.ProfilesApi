@@ -18,7 +18,7 @@ public class GetAllAdminsQueryHandler : IRequestHandler<GetAllAdminsQuery, Paged
     {
         var adminsList = await _adminRepository.GetDoctorsAsync(request.AdminParameters, token);
 
-        var adminsDTOsList = adminsList
+        var adminsDTOsList = adminsList.Items
             .Select(m =>
                 new AdminDTO(
                     m.FirstName,

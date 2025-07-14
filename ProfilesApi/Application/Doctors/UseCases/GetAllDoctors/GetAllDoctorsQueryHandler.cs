@@ -18,7 +18,7 @@ public class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQuery, Pag
     {
         var doctorsList = await _doctorRepository.GetDoctorsAsync(request.DoctorParameters, token);
 
-        var doctorsDTOsList = doctorsList
+        var doctorsDTOsList = doctorsList.Items
             .Select(m =>
                 new DoctorDTO(
                     m.FirstName,
