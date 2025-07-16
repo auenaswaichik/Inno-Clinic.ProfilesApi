@@ -17,9 +17,9 @@ public class UnitOfWork : IUnitOfWork
         _context.SaveChanges();
     }
 
-    public async Task SaveAsync()
+    public async Task SaveAsync(CancellationToken token)
     {
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(token);
     }
 
     public void Rollback()

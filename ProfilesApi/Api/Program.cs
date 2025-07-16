@@ -1,5 +1,6 @@
 using Api.Extensions;
 using Api.Middleware;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.ConfigureMediatr();
 builder.Services.ConfigureValidators();
 builder.Services.ConfigureDataBaseContext(builder.Configuration);
 builder.Services.AddControllers();
+builder.Host.ConfigureSerilog();
 
 var app = builder.Build();
 

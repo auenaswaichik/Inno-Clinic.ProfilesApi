@@ -1,10 +1,12 @@
-using Application.Doctors.UseCases.GetAllDoctors;
+using Application.Admins.UseCases.GetAdminById;
 using Application.Doctors.UseCases.GetDoctorById;
+using Application.Patients.UseCases.GetPatientById;
 using Domain.Interfaces.IRepositories;
 using FluentValidation;
 using Infrastructure.DbContexts;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Api.Extensions;
 
@@ -22,7 +24,17 @@ public static class ServiceExtensions
     {
         services.AddMediatR(cfg =>
         {
-            var applicationAssembly = typeof(GetAllDoctorsQuery).Assembly;
+            var applicationAssembly = typeof(GetDoctorByIdQuery).Assembly;
+            cfg.RegisterServicesFromAssembly(applicationAssembly);
+        });
+        services.AddMediatR(cfg =>
+        {
+            var applicationAssembly = typeof(GetPatientByIdQuery).Assembly;
+            cfg.RegisterServicesFromAssembly(applicationAssembly);
+        });
+        services.AddMediatR(cfg =>
+        {
+            var applicationAssembly = typeof(GetAdminByIdQuery).Assembly;
             cfg.RegisterServicesFromAssembly(applicationAssembly);
         });
     }
@@ -34,6 +46,13 @@ public static class ServiceExtensions
 
     public static void ConfigureValidators(this IServiceCollection services)
     {
-        services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly);   
+        services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly);
+        services.AddValidatorsFromAssembly(typeof(GetPatientByIdQueryValidator).Assembly);
+        services.AddValidatorsFromAssembly(typeof(GetAdminByIdQueryValidator).Assembly);
+    }
+
+    public static void ConfigureSerilog(this IHostBuilder host)
+    {
+        host.UseSerilog((ctx, config) => config.ReadFrom.Configuration(ctx.Configuration));
     }
 }

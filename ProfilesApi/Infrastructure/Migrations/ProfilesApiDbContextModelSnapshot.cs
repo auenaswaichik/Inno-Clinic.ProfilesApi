@@ -46,6 +46,35 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"),
+                            DateBirth = new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Admin",
+                            LastName = "Abaldet",
+                            OfficeId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"),
+                            DateBirth = new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Admin",
+                            LastName = "Abaldet",
+                            OfficeId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"),
+                            DateBirth = new DateTime(1999, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Admin",
+                            LastName = "Abaldet",
+                            OfficeId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Doctor", b =>
@@ -124,13 +153,16 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("DateBirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("MiddleName")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ProfileId")
@@ -139,6 +171,35 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Patients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa1"),
+                            DateBirth = new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ilia",
+                            IsDeleted = false,
+                            LastName = "Kustovich",
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa2"),
+                            DateBirth = new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ilia",
+                            IsDeleted = false,
+                            LastName = "Kustovich",
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"),
+                            DateBirth = new DateTime(2000, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ilia",
+                            IsDeleted = false,
+                            LastName = "Kustovich",
+                            ProfileId = new Guid("00000000-0000-0000-0000-000000000000")
+                        });
                 });
 #pragma warning restore 612, 618
         }
