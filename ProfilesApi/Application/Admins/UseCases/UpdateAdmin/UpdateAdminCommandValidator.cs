@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Admins.UseCases.UpdateAdmin;
 
-public class UpdateAdminCommandValidator : AbstractValidator<UpdateAdminCommand>
+public sealed class UpdateAdminCommandValidator : AbstractValidator<UpdateAdminCommand>
 {
     public UpdateAdminCommandValidator()
     {

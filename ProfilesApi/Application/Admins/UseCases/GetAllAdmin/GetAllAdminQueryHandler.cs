@@ -5,7 +5,7 @@ using Domain.Entities.Extensions;
 
 namespace Application.Admins.UseCases.GetAllAdmins;
 
-public class GetAllAdminsQueryHandler : IRequestHandler<GetAllAdminsQuery, PagedList<AdminDTO>>
+public sealed class GetAllAdminsQueryHandler : IRequestHandler<GetAllAdminsQuery, PagedList<AdminDTO>>
 {
     private readonly IAdminRepository _adminRepository;
 

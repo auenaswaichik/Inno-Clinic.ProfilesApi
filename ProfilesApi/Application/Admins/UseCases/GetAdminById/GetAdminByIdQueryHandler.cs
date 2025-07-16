@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Application.Admins.UseCases.GetAdminById;
 
-public class GetAdminByIdQueryHandler : IRequestHandler<GetAdminByIdQuery, AdminDTO>
+public sealed class GetAdminByIdQueryHandler : IRequestHandler<GetAdminByIdQuery, AdminDTO>
 {
     private readonly IAdminRepository _adminRepository;
     private readonly IValidator<GetAdminByIdQuery> _validator;
@@ -30,7 +30,7 @@ public class GetAdminByIdQueryHandler : IRequestHandler<GetAdminByIdQuery, Admin
 
         if (admin is null)
         {
-            throw new NotFoundException("There is no such Admin to find");
+            throw new NotFoundException($"Admin with id: {request.Id} doesn't exist");
         }
 
         return new AdminDTO(

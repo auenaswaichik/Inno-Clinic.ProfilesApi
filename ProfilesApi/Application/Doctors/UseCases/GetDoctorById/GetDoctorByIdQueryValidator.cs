@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Doctors.UseCases.GetDoctorById;
 
-public class GetDoctorByIdQueryValidator : AbstractValidator<GetDoctorByIdQuery>
+public sealed class GetDoctorByIdQueryValidator : AbstractValidator<GetDoctorByIdQuery>
 {
     public GetDoctorByIdQueryValidator()
     {

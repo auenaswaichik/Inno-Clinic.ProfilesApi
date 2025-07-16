@@ -23,7 +23,7 @@ public class AdminRepository : GenericRepository<Admin>, IAdminRepository
 
     public async Task<PagedList<Admin>> GetDoctorsAsync(AdminParameters adminParameters, CancellationToken token)
     {
-        var admins = await _context.Admins.FilterByParameters(adminParameters).ToListAsync();
+        var admins = await _context.Admins.FilterByParameters(adminParameters).ToListAsync(token);
         
         return PagedList<Admin>.Create(admins, adminParameters.PageNumber, adminParameters.PageSize);
     }

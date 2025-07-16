@@ -5,5 +5,5 @@ namespace Application.Admins.UseCases.GetAdminById;
 
 public class GetAdminByIdQuery : IRequest<AdminDTO>
 {
-    public Guid Id;
+    public Guid Id{ get; set; }
 }

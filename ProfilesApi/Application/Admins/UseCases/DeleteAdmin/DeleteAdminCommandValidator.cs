@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Admins.UseCases.DeleteAdmin;
 
-public class DeleteAdminCommandValidator : AbstractValidator<DeleteAdminCommand>
+public sealed class DeleteAdminCommandValidator : AbstractValidator<DeleteAdminCommand>
 {
     public DeleteAdminCommandValidator()
     {

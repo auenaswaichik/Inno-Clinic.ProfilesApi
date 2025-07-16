@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Entities.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.DbContexts;
@@ -59,16 +60,16 @@ public class ProfilesApiDbContext : DbContext
     private void HandleSoftDelete()
     {
         var entries = ChangeTracker.Entries()
-                .Where(m => m.State == EntityState.Deleted && m.Entity is Patient);
+                .Where(m => m.State == EntityState.Deleted && m.Entity is SoftDelete);
 
         foreach (var entry in entries)
         {
             entry.State = EntityState.Modified;
-            if (entry.Entity is Patient softDeletePatient)
-            {
-                softDeletePatient.IsDeleted = true;
-                softDeletePatient.DeletedAt = DateTime.UtcNow;
-            }
+
+            var softDelete = (SoftDelete)entry.Entity;
+
+            softDelete.IsDeleted = true;
+            softDelete.DeletedAt = DateTime.UtcNow;
         }
     }
 }

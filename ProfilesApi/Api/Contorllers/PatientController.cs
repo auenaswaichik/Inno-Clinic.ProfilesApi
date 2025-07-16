@@ -25,7 +25,10 @@ public class PatientController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<PagedList<PatientDTO>>> GetPatients([FromQuery] PatientParameters patientParameters)
     {
-        var query = new GetAllPatientsQuery() { PatientParameters = patientParameters };
+        var query = new GetAllPatientsQuery()
+        {
+            PatientParameters = patientParameters
+        };
         
         return Ok(await _mediator.Send(query));
     }
@@ -33,7 +36,10 @@ public class PatientController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<PatientDTO>> GetPatientById(Guid id)
     {
-        var query = new GetPatientByIdQuery() { Id = id };
+        var query = new GetPatientByIdQuery()
+        {
+            Id = id
+        };
         
         return Ok(await _mediator.Send(query));
     }
@@ -53,7 +59,10 @@ public class PatientController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult<PatientDTO>> DeletePatient(Guid id)
     {
-        var command = new DeletePatientCommand() { Id = id };
+        var command = new DeletePatientCommand()
+        {
+            Id = id
+        };
 
         await _mediator.Send(command);
         

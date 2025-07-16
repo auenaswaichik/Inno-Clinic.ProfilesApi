@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Application.Admins.UseCases.UpdateAdmin;
 
-public class UpdateAdminCommandHandler : IRequestHandler<UpdateAdminCommand, AdminDTO>
+public sealed class UpdateAdminCommandHandler : IRequestHandler<UpdateAdminCommand, AdminDTO>
 {
     private readonly IAdminRepository _adminRepository;
     private readonly IUnitOfWork _unitOfWork;

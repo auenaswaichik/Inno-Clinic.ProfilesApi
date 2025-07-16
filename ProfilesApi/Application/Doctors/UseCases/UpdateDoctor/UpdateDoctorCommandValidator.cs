@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Doctors.UseCases.UpdateDoctor;
 
-public class UpdateDoctorCommandValidator : AbstractValidator<UpdateDoctorCommand>
+public sealed class UpdateDoctorCommandValidator : AbstractValidator<UpdateDoctorCommand>
 {
     public UpdateDoctorCommandValidator()
     {

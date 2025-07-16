@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Patients.UseCases.CreatePatient;
 
-public class CreatePatientCommandValidator : AbstractValidator<CreatePatientCommand>
+public sealed class CreatePatientCommandValidator : AbstractValidator<CreatePatientCommand>
 {
     public CreatePatientCommandValidator()
     {

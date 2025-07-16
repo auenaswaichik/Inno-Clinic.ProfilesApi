@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Admins.UseCases.CreateAdmin;
 
-public class CreateAdminCommandValidator : AbstractValidator<CreateAdminCommand>
+public sealed class CreateAdminCommandValidator : AbstractValidator<CreateAdminCommand>
 {
     public CreateAdminCommandValidator()
     {

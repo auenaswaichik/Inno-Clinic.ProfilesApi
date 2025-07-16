@@ -7,5 +7,5 @@ namespace Application.Doctors.UseCases.GetAllDoctors;
 
 public class GetAllDoctorsQuery : IRequest<PagedList<DoctorDTO>>
 {
-    public DoctorParameters DoctorParameters;
+    public DoctorParameters DoctorParameters{ get; set; }
 }

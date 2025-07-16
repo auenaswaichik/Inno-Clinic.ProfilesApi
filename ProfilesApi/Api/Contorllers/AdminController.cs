@@ -25,7 +25,10 @@ public class AdminController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<PagedList<AdminDTO>>> GetAdmins([FromQuery] AdminParameters adminParameters)
     {
-        var query = new GetAllAdminsQuery() {AdminParameters = adminParameters};
+        var query = new GetAllAdminsQuery()
+        {
+            AdminParameters = adminParameters
+        };
 
         return Ok(await _mediator.Send(query));
     }
@@ -33,7 +36,10 @@ public class AdminController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<AdminDTO>> GetAdminById(Guid id)
     {
-        var query = new GetAdminByIdQuery() { Id = id };
+        var query = new GetAdminByIdQuery()
+        {
+            Id = id
+        };
         
         return Ok(await _mediator.Send(query));
     }
@@ -53,7 +59,10 @@ public class AdminController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult<AdminDTO>> DeleteAdmin(Guid id)
     {
-        var command = new DeleteAdminCommand() { Id = id };
+        var command = new DeleteAdminCommand()
+        {
+            Id = id
+        };
 
         await _mediator.Send(command);
         

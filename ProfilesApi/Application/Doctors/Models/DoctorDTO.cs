@@ -9,6 +9,7 @@ public record DoctorDTO
     public Guid ProfileId { get; init; }
     public Guid SpecializationId { get; init; }
     public Guid OfficeId { get; init; }
+    
     public DoctorDTO(string? firstName, string? lastName, DateTime dateBirth, DateTime careerStartYear, Guid profileId, Guid specializationId, Guid officeId)
     {
         FirstName = firstName;

@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Application.Patients.UseCases.GetPatientById;
 
-public class GetPatientByIdQueryHandler : IRequestHandler<GetPatientByIdQuery, PatientDTO>
+public sealed class GetPatientByIdQueryHandler : IRequestHandler<GetPatientByIdQuery, PatientDTO>
 {
     private readonly IPatientRepository _patientRepository;
     private readonly IValidator<GetPatientByIdQuery> _validator;
@@ -30,7 +30,7 @@ public class GetPatientByIdQueryHandler : IRequestHandler<GetPatientByIdQuery, P
 
         if (patient is null)
         {
-            throw new NotFoundException("There is no such Patient to find");
+            throw new NotFoundException($"Patient with id: {request.Id} doesn't exist");
         }
 
         return new PatientDTO(

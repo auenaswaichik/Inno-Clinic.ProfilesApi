@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Application.Patients.UseCases.CreatePatient;
 
-public class CreatePatientCommandHandler : IRequestHandler<CreatePatientCommand, PatientDTO>
+public sealed class CreatePatientCommandHandler : IRequestHandler<CreatePatientCommand, PatientDTO>
 {
     private readonly IPatientRepository _patientRepository;
     private readonly IUnitOfWork _unitOfWork;

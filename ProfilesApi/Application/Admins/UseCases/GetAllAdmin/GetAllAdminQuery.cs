@@ -7,5 +7,5 @@ namespace Application.Admins.UseCases.GetAllAdmins;
 
 public class GetAllAdminsQuery : IRequest<PagedList<AdminDTO>>
 {
-    public AdminParameters AdminParameters;
+    public AdminParameters AdminParameters{ get; set; }
 }

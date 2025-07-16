@@ -25,7 +25,10 @@ public class DoctorController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<PagedList<DoctorDTO>>> GetDoctors([FromQuery] DoctorParameters doctorParameters)
     {
-        var query = new GetAllDoctorsQuery(){DoctorParameters = doctorParameters};
+        var query = new GetAllDoctorsQuery()
+        {
+            DoctorParameters = doctorParameters
+        };
 
         return Ok(await _mediator.Send(query));
     }
@@ -33,7 +36,10 @@ public class DoctorController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<DoctorDTO>> GetDoctorById(Guid id)
     {
-        var query = new GetDoctorByIdQuery() { Id = id };
+        var query = new GetDoctorByIdQuery()
+        {
+            Id = id
+        };
         
         return Ok(await _mediator.Send(query));
     }
@@ -53,7 +59,10 @@ public class DoctorController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult<DoctorDTO>> DeleteDoctor(Guid id)
     {
-        var command = new DeleteDoctorCommand() { Id = id };
+        var command = new DeleteDoctorCommand()
+        {
+            Id = id
+        };
 
         await _mediator.Send(command);
         

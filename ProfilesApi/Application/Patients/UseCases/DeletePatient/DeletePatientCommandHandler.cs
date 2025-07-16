@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Patients.UseCases.DeletePatient;
 
-public class DeletePatientCommandHandler : IRequestHandler<DeletePatientCommand>
+public sealed class DeletePatientCommandHandler : IRequestHandler<DeletePatientCommand>
 {
     private readonly IPatientRepository _patientRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -31,7 +31,7 @@ public class DeletePatientCommandHandler : IRequestHandler<DeletePatientCommand>
 
         if (patient is null)
         {
-            throw new NotFoundException("There is no such Patient to delete");
+            throw new NotFoundException($"Patient with id: {request.Id} doesn't exist");
         }
 
         _patientRepository.Delete(patient);

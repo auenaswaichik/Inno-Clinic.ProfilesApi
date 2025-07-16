@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Application.Patients.UseCases.UpdatePatient;
 
-public class UpdatePatientCommandHandler : IRequestHandler<UpdatePatientCommand, PatientDTO>
+public sealed class UpdatePatientCommandHandler : IRequestHandler<UpdatePatientCommand, PatientDTO>
 {
     private readonly IPatientRepository _patientRepository;
     private readonly IUnitOfWork _unitOfWork;

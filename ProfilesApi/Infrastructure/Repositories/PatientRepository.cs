@@ -24,7 +24,7 @@ public class PatientRepository : GenericRepository<Patient>, IPatientRepository
 
     public async Task<PagedList<Patient>> GetDoctorsAsync(PatientParameters patientParameters, CancellationToken token)
     {
-        var patinets = await _context.Patients.FilterByParameters(patientParameters).ToListAsync();
+        var patinets = await _context.Patients.FilterByParameters(patientParameters).ToListAsync(token);
 
         return PagedList<Patient>.Create(patinets, patientParameters.PageNumber, patientParameters.PageSize);
     }

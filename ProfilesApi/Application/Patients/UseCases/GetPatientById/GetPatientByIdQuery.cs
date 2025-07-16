@@ -5,5 +5,5 @@ namespace Application.Patients.UseCases.GetPatientById;
 
 public class GetPatientByIdQuery : IRequest<PatientDTO>
 {
-    public Guid Id;
+    public Guid Id{ get; set; }
 }

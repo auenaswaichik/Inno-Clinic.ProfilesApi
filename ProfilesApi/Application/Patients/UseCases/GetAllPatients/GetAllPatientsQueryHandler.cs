@@ -5,7 +5,7 @@ using Domain.Entities.Extensions;
 
 namespace Application.Patients.UseCases.GetAllPatients;
 
-public class GetAllPatientsQueryHandler : IRequestHandler<GetAllPatientsQuery, PagedList<PatientDTO>>
+public sealed class GetAllPatientsQueryHandler : IRequestHandler<GetAllPatientsQuery, PagedList<PatientDTO>>
 {
     private readonly IPatientRepository _patientRepository;
 

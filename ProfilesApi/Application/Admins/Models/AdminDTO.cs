@@ -7,6 +7,7 @@ public record AdminDTO
     public DateTime DateBirth { get; init; }
     public Guid ProfileId { get; init; }
     public Guid OfficeId { get; init; }
+    
     public AdminDTO(string? firstName, string? lastName, DateTime dateBirth, Guid profileId, Guid officeId)
     {
         FirstName = firstName;

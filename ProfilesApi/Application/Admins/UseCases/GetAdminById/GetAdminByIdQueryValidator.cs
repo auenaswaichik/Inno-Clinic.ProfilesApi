@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Admins.UseCases.GetAdminById;
 
-public class GetAdminByIdQueryValidator : AbstractValidator<GetAdminByIdQuery>
+public sealed class GetAdminByIdQueryValidator : AbstractValidator<GetAdminByIdQuery>
 {
     public GetAdminByIdQueryValidator()
     {

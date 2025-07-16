@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Application.Doctors.UseCases.UpdateDoctor;
 
-public class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCommand, DoctorDTO>
+public sealed class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCommand, DoctorDTO>
 {
     private readonly IDoctorRepository _doctorRepository;
     private readonly IUnitOfWork _unitOfWork;

@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Patients.UseCases.DeletePatient;
 
-public class DeletePatientCommandValidator : AbstractValidator<DeletePatientCommand>
+public sealed class DeletePatientCommandValidator : AbstractValidator<DeletePatientCommand>
 {
     public DeletePatientCommandValidator()
     {

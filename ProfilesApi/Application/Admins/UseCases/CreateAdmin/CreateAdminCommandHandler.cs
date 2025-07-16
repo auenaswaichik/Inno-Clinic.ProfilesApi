@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Application.Admins.UseCases.CreateAdmin;
 
-public class CreateAdminCommandHandler : IRequestHandler<CreateAdminCommand, AdminDTO>
+public sealed class CreateAdminCommandHandler : IRequestHandler<CreateAdminCommand, AdminDTO>
 {
     private readonly IAdminRepository _adminRepository;
     private readonly IUnitOfWork _unitOfWork;

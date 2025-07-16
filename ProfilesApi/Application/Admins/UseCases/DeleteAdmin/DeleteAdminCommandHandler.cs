@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Admins.UseCases.DeleteAdmin;
 
-public class DeleteAdminCommandHandler : IRequestHandler<DeleteAdminCommand>
+public sealed class DeleteAdminCommandHandler : IRequestHandler<DeleteAdminCommand>
 {
     private readonly IAdminRepository _adminRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -31,7 +31,7 @@ public class DeleteAdminCommandHandler : IRequestHandler<DeleteAdminCommand>
 
         if (admin is null)
         {
-            throw new NotFoundException("There is no such Admin to delete");
+            throw new NotFoundException($"Admin with id: {request.Id} doesn't exist");
         }
 
         _adminRepository.Delete(admin);

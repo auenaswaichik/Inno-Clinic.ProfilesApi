@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Doctors.UseCases.CreateDoctor;
 
-public class CreateDoctorCommandValidator : AbstractValidator<CreateDoctorCommand>
+public sealed class CreateDoctorCommandValidator : AbstractValidator<CreateDoctorCommand>
 {
     public CreateDoctorCommandValidator()
     {
