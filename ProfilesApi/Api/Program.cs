@@ -1,5 +1,6 @@
 using Api.Extensions;
 using Api.Middleware;
+using Infrastructure.DbContexts;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,8 @@ builder.Services.AddControllers();
 builder.Host.ConfigureSerilog();
 
 var app = builder.Build();
+
+app.EnsureDatabaseMigration();
 
 if (app.Environment.IsDevelopment())
 {
