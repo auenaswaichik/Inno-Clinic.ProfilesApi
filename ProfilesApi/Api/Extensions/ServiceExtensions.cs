@@ -39,6 +39,18 @@ public static class ServiceExtensions
         });
     }
 
+    public static void ConfigureAuthorization(this IServiceCollection services)
+    {
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+            options.AddPolicy("DoctorOnly", policy => policy.RequireRole("Doctor"));
+            options.AddPolicy("AdminOrDoctorAccess", policy => 
+                policy.RequireRole("Admin", "Doctor"));
+            options.AddPolicy("PatientOnly", policy => policy.RequireRole("Patient"));
+        });
+    }
+
     public static void ConfigureDataBaseContext(this IServiceCollection services, IConfiguration connection)
     {
         services.AddDbContext<ProfilesApiDbContext>(options => options.UseSqlServer(connection.GetConnectionString("sqlConnection")));
