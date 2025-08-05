@@ -7,10 +7,12 @@ using Application.Doctors.UseCases.UpdateDoctor;
 using Domain.Entities.Extensions;
 using Domain.RequestFeatures;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/doctors")]
 public class DoctorController : ControllerBase
@@ -21,7 +23,7 @@ public class DoctorController : ControllerBase
     {
         _mediator = mediator;
     }
-
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<PagedList<DoctorDTO>>> GetDoctors([FromQuery] DoctorParameters doctorParameters)
     {
@@ -33,6 +35,7 @@ public class DoctorController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<DoctorDTO>> GetDoctorById(Guid id)
     {
@@ -44,18 +47,22 @@ public class DoctorController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
+    [Authorize(Policy = "AdminOnly")]
     [HttpPost]
     public async Task<ActionResult<DoctorDTO>> CreateDoctor([FromBody] CreateDoctorCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
+    [Authorize(Policy = "AdminOnly")]
     [HttpPut]
     public async Task<ActionResult<DoctorDTO>> UpdateDoctor([FromBody] UpdateDoctorCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
+
+    [Authorize(Policy = "AdminOnly")]
     [HttpDelete("{id}")]
     public async Task<ActionResult<DoctorDTO>> DeleteDoctor(Guid id)
     {

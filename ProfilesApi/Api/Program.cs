@@ -1,7 +1,5 @@
 using Api.Extensions;
 using Api.Middleware;
-using Infrastructure.DbContexts;
-using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +7,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthentication();
+builder.Services.ConfigureAuthorization();
 builder.Services.ConfigureRepositories();
 builder.Services.ConfigureMediatr();
 builder.Services.ConfigureValidators();
@@ -26,6 +26,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
