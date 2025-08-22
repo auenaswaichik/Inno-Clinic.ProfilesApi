@@ -4,7 +4,9 @@ using Application.Patients.UseCases.GetPatientById;
 using Domain.Interfaces.IRepositories;
 using FluentValidation;
 using Infrastructure.DbContexts;
+using Infrastructure.Messages.PatientRegisteredMessages;
 using Infrastructure.Repositories;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -45,7 +47,7 @@ public static class ServiceExtensions
         {
             options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
             options.AddPolicy("DoctorOnly", policy => policy.RequireRole("Doctor"));
-            options.AddPolicy("AdminOrDoctorAccess", policy => 
+            options.AddPolicy("AdminOrDoctorAccess", policy =>
                 policy.RequireRole("Admin", "Doctor"));
             options.AddPolicy("PatientOnly", policy => policy.RequireRole("Patient"));
         });
@@ -66,5 +68,37 @@ public static class ServiceExtensions
     public static void ConfigureSerilog(this IHostBuilder host)
     {
         host.UseSerilog((ctx, config) => config.ReadFrom.Configuration(ctx.Configuration));
+    }
+
+    public static void ConfigureMassTransit(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddMassTransit(x =>
+        {
+            x.AddConsumer<PatientRegisteredConsumer>();
+
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                cfg.Host(configuration["RabbitMQ:Host"], "/", h =>
+                {
+                    h.Username(configuration["RabbitMQ:Username"]);
+                    h.Password(configuration["RabbitMQ:Password"]);
+                });
+
+                cfg.ReceiveEndpoint("patient-registered", e =>
+                {
+                    e.PrefetchCount = 32;
+                    e.Durable = true;
+                    e.AutoDelete = false;
+
+                    e.UseInMemoryOutbox();
+                    e.UseMessageRetry(r => r.Interval(5, TimeSpan.FromSeconds(10)));
+
+                    e.ConfigureConsumer<PatientRegisteredConsumer>(context);
+                });
+
+            });
+            
+            
+        });
     }
 }

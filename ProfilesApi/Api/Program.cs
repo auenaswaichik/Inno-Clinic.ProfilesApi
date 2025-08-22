@@ -14,6 +14,7 @@ builder.Services.ConfigureMediatr();
 builder.Services.ConfigureValidators();
 builder.Services.ConfigureDataBaseContext(builder.Configuration);
 builder.Services.AddControllers();
+builder.Services.ConfigureMassTransit(builder.Configuration);
 builder.Host.ConfigureSerilog();
 
 var app = builder.Build();
