@@ -38,7 +38,6 @@ public sealed class GetDoctorByIdQueryHandler : IRequestHandler<GetDoctorByIdQue
                     doctor.LastName,
                     doctor.DateBirth,
                     doctor.CareerStartYear,
-                    doctor.ProfileId,
                     doctor.SpecializationId,
                     doctor.OfficeId
                 );

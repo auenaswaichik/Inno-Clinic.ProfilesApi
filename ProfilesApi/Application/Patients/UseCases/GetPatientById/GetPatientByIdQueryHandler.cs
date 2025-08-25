@@ -36,8 +36,7 @@ public sealed class GetPatientByIdQueryHandler : IRequestHandler<GetPatientByIdQ
         return new PatientDTO(
                     patient.FirstName,
                     patient.LastName,
-                    patient.DateBirth,
-                    patient.ProfileId
+                    patient.DateBirth
                 );
     }
 

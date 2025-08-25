@@ -44,7 +44,6 @@ public sealed class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCom
             LastName = request.LastName,
             DateBirth = request.DateBirth,
             CareerStartYear = request.CareerStartYear,
-            ProfileId = request.ProfileId,
             SpecializationId = request.SpecializationId,
             OfficeId = request.OfficeId
         };
@@ -57,7 +56,6 @@ public sealed class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCom
                     updatedDoctor.LastName,
                     updatedDoctor.DateBirth,
                     updatedDoctor.CareerStartYear,
-                    updatedDoctor.ProfileId,
                     updatedDoctor.SpecializationId,
                     updatedDoctor.OfficeId
                 );

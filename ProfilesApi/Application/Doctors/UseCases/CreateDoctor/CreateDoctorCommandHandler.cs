@@ -68,7 +68,6 @@ public sealed class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCom
                     createdDoctor.LastName,
                     createdDoctor.DateBirth,
                     createdDoctor.CareerStartYear,
-                    createdDoctor.ProfileId,
                     createdDoctor.SpecializationId,
                     createdDoctor.OfficeId
                 );

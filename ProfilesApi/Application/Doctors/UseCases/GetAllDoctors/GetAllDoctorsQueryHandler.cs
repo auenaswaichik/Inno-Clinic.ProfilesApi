@@ -25,7 +25,6 @@ public sealed class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQue
                     m.LastName,
                     m.DateBirth,
                     m.CareerStartYear,
-                    m.ProfileId,
                     m.SpecializationId,
                     m.OfficeId
                 ));

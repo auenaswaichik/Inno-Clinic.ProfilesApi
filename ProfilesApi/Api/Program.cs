@@ -1,7 +1,10 @@
 using Api.Extensions;
 using Api.Middleware;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Env.Load();
 
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();

@@ -25,6 +25,7 @@ public class PatientRegisteredConsumer : IConsumer<PatientRegisteredMessage>
             FirstName = message.FirstName,
             LastName = message.LastName,
             Email = message.Email,
+            PasswordHash = message.PasswordHash,
             DateBirth = message.DateBirth
         });
 

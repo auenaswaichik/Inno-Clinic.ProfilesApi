@@ -50,8 +50,7 @@ public sealed class CreatePatientCommandHandler : IRequestHandler<CreatePatientC
         return new PatientDTO(
                     createdPatient.FirstName,
                     createdPatient.LastName,
-                    createdPatient.DateBirth,
-                    createdPatient.ProfileId
+                    createdPatient.DateBirth
                 );
     }
 }

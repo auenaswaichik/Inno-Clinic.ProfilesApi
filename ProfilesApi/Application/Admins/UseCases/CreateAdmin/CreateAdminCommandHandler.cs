@@ -66,7 +66,6 @@ public sealed class CreateAdminCommandHandler : IRequestHandler<CreateAdminComma
                     createdAdmin.FirstName,
                     createdAdmin.LastName,
                     createdAdmin.DateBirth,
-                    createdAdmin.ProfileId,
                     createdAdmin.OfficeId
                 );
     }

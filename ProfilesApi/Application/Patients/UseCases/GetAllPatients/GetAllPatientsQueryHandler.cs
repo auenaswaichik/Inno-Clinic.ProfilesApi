@@ -23,8 +23,7 @@ public sealed class GetAllPatientsQueryHandler : IRequestHandler<GetAllPatientsQ
                 new PatientDTO(
                     m.FirstName,
                     m.LastName,
-                    m.DateBirth,
-                    m.ProfileId
+                    m.DateBirth
                 ))
             .ToList();
             

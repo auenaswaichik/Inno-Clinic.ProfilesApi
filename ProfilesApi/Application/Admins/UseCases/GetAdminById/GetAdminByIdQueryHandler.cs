@@ -37,7 +37,6 @@ public sealed class GetAdminByIdQueryHandler : IRequestHandler<GetAdminByIdQuery
                     admin.FirstName,
                     admin.LastName,
                     admin.DateBirth,
-                    admin.ProfileId,
                     admin.OfficeId
                 );
     }
