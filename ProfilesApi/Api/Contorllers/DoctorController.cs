@@ -1,3 +1,4 @@
+using Api.Constants;
 using Application.Doctors.Models;
 using Application.Doctors.UseCases.CreateDoctor;
 using Application.Doctors.UseCases.DeleteDoctor;
@@ -47,14 +48,14 @@ public class DoctorController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = PolicyConstants.ADMIN_ONLY_POLICY)]
     [HttpPost]
     public async Task<ActionResult<DoctorDTO>> CreateDoctor([FromBody] CreateDoctorCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = PolicyConstants.ADMIN_ONLY_POLICY)]
     [HttpPut]
     public async Task<ActionResult<DoctorDTO>> UpdateDoctor([FromBody] UpdateDoctorCommand command)
     {
@@ -62,7 +63,7 @@ public class DoctorController : ControllerBase
     }
 
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = PolicyConstants.ADMIN_ONLY_POLICY)]
     [HttpDelete("{id}")]
     public async Task<ActionResult<DoctorDTO>> DeleteDoctor(Guid id)
     {

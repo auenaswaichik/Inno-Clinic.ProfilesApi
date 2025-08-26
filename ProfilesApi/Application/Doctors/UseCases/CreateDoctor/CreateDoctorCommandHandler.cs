@@ -1,6 +1,7 @@
 using System.Text;
 using Application.Doctors.Models;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Exceptions;
 using Domain.Interfaces.IRepositories;
 using FluentValidation;
@@ -54,11 +55,12 @@ public sealed class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCom
         await _unitOfWork.SaveAsync(token);
 
         await _publishEndpoint.Publish(
-            new UserCreatedMessage(){
-                Id = doctor.Id,
-                FirstName = doctor.FirstName,
-                Email = doctor.Email,
-                Role = "Doctor",
+            new UserCreatedMessage
+            {
+                Id = createdDoctor.Id,
+                FirstName = createdDoctor.FirstName,
+                Email = createdDoctor.Email,
+                Role = Roles.Doctor,
                 CreatedAt = DateTime.UtcNow
             }
         );

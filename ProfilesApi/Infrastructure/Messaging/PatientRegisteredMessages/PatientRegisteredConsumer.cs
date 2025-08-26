@@ -26,6 +26,8 @@ public class PatientRegisteredConsumer : IConsumer<PatientRegisteredMessage>
             Email = message.Email,
         });
 
-        await _unitOfWork.SaveAsync(new CancellationToken());
+        var tokenSource = new CancellationTokenSource();
+
+        await _unitOfWork.SaveAsync(tokenSource.Token);
     }
 }

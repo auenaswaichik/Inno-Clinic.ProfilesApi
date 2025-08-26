@@ -1,6 +1,7 @@
 using System.Text;
 using Application.Admins.Models;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Exceptions;
 using Domain.Interfaces.IRepositories;
 using FluentValidation;
@@ -53,11 +54,12 @@ public sealed class CreateAdminCommandHandler : IRequestHandler<CreateAdminComma
         await _unitOfWork.SaveAsync(token);
 
         await _publishEndpoint.Publish(
-            new UserCreatedMessage(){
+            new UserCreatedMessage
+            {
                 Id = createdAdmin.Id,
                 FirstName = createdAdmin.FirstName,
-                Email = admin.Email,
-                Role = "Admin",
+                Email = createdAdmin.Email,
+                Role = Roles.Admin,
                 CreatedAt = DateTime.UtcNow
             }
         );

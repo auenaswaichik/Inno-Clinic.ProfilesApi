@@ -1,3 +1,4 @@
+using Api.Constants;
 using Application.Admins.UseCases.GetAdminById;
 using Application.Doctors.UseCases.GetDoctorById;
 using Application.Patients.UseCases.GetPatientById;
@@ -45,11 +46,11 @@ public static class ServiceExtensions
     {
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
-            options.AddPolicy("DoctorOnly", policy => policy.RequireRole("Doctor"));
-            options.AddPolicy("AdminOrDoctorAccess", policy =>
+            options.AddPolicy(PolicyConstants.ADMIN_ONLY_POLICY, policy => policy.RequireRole("Admin"));
+            options.AddPolicy(PolicyConstants.DOCTOR_ONLY_POLICY, policy => policy.RequireRole("Doctor"));
+            options.AddPolicy(PolicyConstants.ADMIN_OR_DOCTOR_ONLY_POLICY, policy =>
                 policy.RequireRole("Admin", "Doctor"));
-            options.AddPolicy("PatientOnly", policy => policy.RequireRole("Patient"));
+            options.AddPolicy(PolicyConstants.PATIENT_ONLY_POLICY, policy => policy.RequireRole("Patient"));
         });
     }
 
@@ -95,10 +96,7 @@ public static class ServiceExtensions
 
                     e.ConfigureConsumer<PatientRegisteredConsumer>(context);
                 });
-
             });
-            
-            
         });
     }
 }
