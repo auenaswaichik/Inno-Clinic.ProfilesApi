@@ -24,7 +24,6 @@ public class PatientRegisteredConsumer : IConsumer<PatientRegisteredMessage>
             Id = message.Id,
             FirstName = message.Login,
             Email = message.Email,
-            PasswordHash = message.PasswordHash,
         });
 
         await _unitOfWork.SaveAsync(new CancellationToken());
