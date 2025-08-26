@@ -22,11 +22,9 @@ public class PatientRegisteredConsumer : IConsumer<PatientRegisteredMessage>
         _patientRepository.Insert(new Patient()
         {
             Id = message.Id,
-            FirstName = message.FirstName,
-            LastName = message.LastName,
+            FirstName = message.Login,
             Email = message.Email,
             PasswordHash = message.PasswordHash,
-            DateBirth = message.DateBirth
         });
 
         await _unitOfWork.SaveAsync(new CancellationToken());

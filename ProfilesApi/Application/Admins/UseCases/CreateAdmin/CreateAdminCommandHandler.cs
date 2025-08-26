@@ -45,6 +45,7 @@ public sealed class CreateAdminCommandHandler : IRequestHandler<CreateAdminComma
         {
             FirstName = request.FirstName,
             LastName = request.LastName,
+            Email = request.Email,
             DateBirth = request.DateBirth
         };
 
@@ -55,8 +56,7 @@ public sealed class CreateAdminCommandHandler : IRequestHandler<CreateAdminComma
             new UserCreatedMessage(){
                 Id = createdAdmin.Id,
                 FirstName = createdAdmin.FirstName,
-                LastName = createdAdmin.LastName,
-                Email = "a",
+                Email = admin.Email,
                 Role = "Admin",
                 CreatedAt = DateTime.UtcNow
             }

@@ -46,6 +46,7 @@ public sealed class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCom
             FirstName = request.FirstName,
             LastName = request.LastName,
             DateBirth = request.DateBirth,
+            Email = request.Email,
             CareerStartYear = request.CareerStartYear
         };
 
@@ -56,8 +57,7 @@ public sealed class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCom
             new UserCreatedMessage(){
                 Id = doctor.Id,
                 FirstName = doctor.FirstName,
-                LastName = doctor.LastName,
-                Email = "a",
+                Email = doctor.Email,
                 Role = "Doctor",
                 CreatedAt = DateTime.UtcNow
             }
