@@ -7,5 +7,6 @@ public sealed class Doctor : BaseUserModel
     public DateTime DateBirth { get; set; }
     public DateTime CareerStartYear { get; set; }
     public Guid SpecializationId { get; set; }
+    public Specialization? Specialization { get; set; }
     public Guid OfficeId { get; set; }
 }
