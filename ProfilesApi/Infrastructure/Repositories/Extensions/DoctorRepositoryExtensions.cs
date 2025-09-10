@@ -1,5 +1,6 @@
 using Domain.Entities;
 using Domain.RequestFeatures;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Extensions;
 
@@ -10,6 +11,7 @@ public static class DoctorRepositoryExtension
     public static IQueryable<Doctor> FilterByParameters(this IQueryable<Doctor> doctors, DoctorParameters parameters)
     {
         return doctors
+            .Include(m => m.Specialization)
             .FilterBySpecialization(parameters.SpecializationId)
             .FilterByOffice(parameters.OfficeId)
             .Search(parameters.SearchTerm);

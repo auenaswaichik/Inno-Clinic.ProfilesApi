@@ -58,7 +58,7 @@ public sealed class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCom
                     updatedDoctor.Email,
                     updatedDoctor.DateBirth,
                     updatedDoctor.CareerStartYear,
-                    updatedDoctor.SpecializationId,
+                    updatedDoctor.Specialization?.Name ?? string.Empty,
                     updatedDoctor.OfficeId
                 );
     }

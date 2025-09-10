@@ -1,5 +1,4 @@
 using Domain.Entities;
-using Domain.Entities.Extensions;
 using Domain.Entities.Parameters;
 using Domain.Interfaces.IRepositories;
 using Infrastructure.DbContexts;

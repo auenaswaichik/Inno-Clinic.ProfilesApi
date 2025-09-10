@@ -65,6 +65,8 @@ public sealed class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCom
             }
         );
 
+        createdDoctor = await _doctorRepository.GetByIdAsync(createdDoctor.Id, token); 
+
         return new DoctorDTO(
                     createdDoctor.Id,
                     createdDoctor.FirstName,
@@ -72,7 +74,7 @@ public sealed class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCom
                     createdDoctor.Email,
                     createdDoctor.DateBirth,
                     createdDoctor.CareerStartYear,
-                    createdDoctor.SpecializationId,
+                    createdDoctor.Specialization?.Name ?? string.Empty,
                     createdDoctor.OfficeId
                 );
     }

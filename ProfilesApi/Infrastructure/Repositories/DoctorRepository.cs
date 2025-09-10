@@ -19,13 +19,14 @@ public class DoctorRepository : GenericRepository<Doctor>, IDoctorRepository
 
     public async Task<Doctor> GetByIdAsync(Guid id, CancellationToken token)
     {
-        return await _context.Doctors.FirstOrDefaultAsync(m => m.Id == id, token);
+        return await _context.Doctors
+            .Include(m => m.Specialization)
+            .FirstOrDefaultAsync(m => m.Id == id, token);
     }
 
     public async Task<PagedList<Doctor>> GetDoctorsAsync(DoctorParameters doctorParameters, CancellationToken token)
     {
-        var doctors = await _context.Doctors.FilterByParameters(doctorParameters).ToListAsync(token);
-        
+        var doctors = await _context.Doctors.FilterByParameters(doctorParameters).ToListAsync(token); 
         return PagedList<Doctor>.Create(doctors, doctorParameters.PageNumber, doctorParameters.PageSize);
     }
 }

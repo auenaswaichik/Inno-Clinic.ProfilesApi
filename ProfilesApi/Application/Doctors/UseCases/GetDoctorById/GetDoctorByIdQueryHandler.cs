@@ -40,7 +40,7 @@ public sealed class GetDoctorByIdQueryHandler : IRequestHandler<GetDoctorByIdQue
                     doctor.Email,
                     doctor.DateBirth,
                     doctor.CareerStartYear,
-                    doctor.SpecializationId,
+                    doctor.Specialization?.Name ?? string.Empty,
                     doctor.OfficeId
                 );
     }

@@ -23,7 +23,8 @@ public class ProfilesApiDbContext : DbContext
         modelBuilder.Entity<Doctor>()
             .HasOne(m => m.Specialization)
             .WithMany(m => m.Doctors)
-            .HasForeignKey(m => m.SpecializationId);
+            .HasForeignKey(m => m.SpecializationId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Doctor>()
             .HasKey(m => m.Id);
@@ -66,9 +67,9 @@ public class ProfilesApiDbContext : DbContext
         );
 
         modelBuilder.Entity<Doctor>().HasData(
-            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111") },
-            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111") },
-            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa8"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111") }
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111")},
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111")},
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa8"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111")}
         );
     }
 

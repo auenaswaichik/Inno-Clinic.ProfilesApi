@@ -27,7 +27,7 @@ public sealed class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQue
                     m.Email,
                     m.DateBirth,
                     m.CareerStartYear,
-                    m.SpecializationId,
+                    m.Specialization?.Name ?? string.Empty,
                     m.OfficeId
                 ));
         return new PagedList<DoctorDTO>(doctorsDTOsList, doctorsList.TotalCount, doctorsList.PageIndex, doctorsList.PageSize);

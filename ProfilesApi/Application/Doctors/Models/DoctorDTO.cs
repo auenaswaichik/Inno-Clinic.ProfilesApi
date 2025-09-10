@@ -8,10 +8,10 @@ public record DoctorDTO
     public string? Email { get; init; }
     public DateTime DateBirth { get; init; }
     public DateTime CareerStartYear { get; init; }
-    public Guid SpecializationId { get; init; }
+    public string Specialization{ get; init; }
     public Guid OfficeId { get; init; }
     
-    public DoctorDTO(Guid id, string? firstName, string? lastName, string? email, DateTime dateBirth, DateTime careerStartYear, Guid specializationId, Guid officeId)
+    public DoctorDTO(Guid id, string? firstName, string? lastName, string? email, DateTime dateBirth, DateTime careerStartYear, string specialization, Guid officeId)
     {
         Id = id;
         FirstName = firstName;
@@ -19,7 +19,7 @@ public record DoctorDTO
         Email = email;
         DateBirth = dateBirth;
         CareerStartYear = careerStartYear;
-        SpecializationId = specializationId;
+        Specialization = specialization;
         OfficeId = officeId;
     }
 };
