@@ -11,6 +11,7 @@ public class ProfilesApiDbContext : DbContext
     public DbSet<Admin> Admins { get; set; }
     public DbSet<Patient> Patients { get; set; }
     public DbSet<Doctor> Doctors { get; set; }
+    public DbSet<Specialization> Specializations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,10 +21,23 @@ public class ProfilesApiDbContext : DbContext
             .HasKey(m => m.Id);
 
         modelBuilder.Entity<Doctor>()
+            .HasOne(m => m.Specialization)
+            .WithMany(m => m.Doctors)
+            .HasForeignKey(m => m.SpecializationId);
+
+        modelBuilder.Entity<Doctor>()
             .HasKey(m => m.Id);
 
         modelBuilder.Entity<Patient>()
             .HasQueryFilter(m => !m.IsDeleted)
+            .HasKey(m => m.Id);
+
+        modelBuilder.Entity<Specialization>()
+            .HasMany(m => m.Doctors)
+            .WithOne(m => m.Specialization)
+            .HasForeignKey(m => m.SpecializationId);
+
+        modelBuilder.Entity<Specialization>()
             .HasKey(m => m.Id);
 
         modelBuilder.Entity<Admin>().HasData(
@@ -38,10 +52,23 @@ public class ProfilesApiDbContext : DbContext
             new Patient { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa3"), Email = "coolguy@test.com", FirstName = "Ilia", LastName = "Kustovich", DateBirth = new DateTime(2000, 11, 12) }
         );
 
+        modelBuilder.Entity<Specialization>().HasData(
+            new Specialization
+            {
+                Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                Name = "Cardiology"
+            },
+            new Specialization
+            {
+                Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                Name = "Neurology"
+            }
+        );
+
         modelBuilder.Entity<Doctor>().HasData(
-            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"),Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12) },
-            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7"),Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12) },
-            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa8"),Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12) }
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111") },
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111") },
+            new Doctor { Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa8"), Email = "coolguy@test.com", FirstName = "Pasha", LastName = "Swagovich", DateBirth = new DateTime(2001, 11, 12), CareerStartYear = new DateTime(2001, 11, 12), SpecializationId = new Guid("11111111-1111-1111-1111-111111111111") }
         );
     }
 
