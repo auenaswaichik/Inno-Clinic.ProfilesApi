@@ -4,6 +4,7 @@ using Api.Constants;
 using Application.Admins.UseCases.GetAdminById;
 using Application.Doctors.UseCases.GetDoctorById;
 using Application.Patients.UseCases.GetPatientById;
+using Application.Specializations.UseCases.GetSpecializationById;
 using Domain.Interfaces.IRepositories;
 using FluentValidation;
 using Infrastructure.DbContexts;
@@ -25,6 +26,7 @@ public static class ServiceExtensions
         services.AddScoped<IDoctorRepository, DoctorRepository>();
         services.AddScoped<IPatientRepository, PatientRepository>();
         services.AddScoped<IAdminRepository, AdminRepository>();
+        services.AddScoped<ISpecializationRepository, SpecializationRepository>();
     }
 
     public static void ConfigureMediatr(this IServiceCollection services)
@@ -42,6 +44,11 @@ public static class ServiceExtensions
         services.AddMediatR(cfg =>
         {
             var applicationAssembly = typeof(GetAdminByIdQuery).Assembly;
+            cfg.RegisterServicesFromAssembly(applicationAssembly);
+        });
+        services.AddMediatR(cfg =>
+        {
+            var applicationAssembly = typeof(GetSpecializationByIdQuery).Assembly;
             cfg.RegisterServicesFromAssembly(applicationAssembly);
         });
     }
@@ -126,6 +133,7 @@ public static class ServiceExtensions
         services.AddValidatorsFromAssembly(typeof(GetDoctorByIdQueryValidator).Assembly);
         services.AddValidatorsFromAssembly(typeof(GetPatientByIdQueryValidator).Assembly);
         services.AddValidatorsFromAssembly(typeof(GetAdminByIdQueryValidator).Assembly);
+        services.AddValidatorsFromAssembly(typeof(GetSpecializationByIdQueryValidator).Assembly);
     }
 
     public static void ConfigureSerilog(this IHostBuilder host)
