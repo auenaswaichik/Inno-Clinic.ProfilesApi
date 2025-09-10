@@ -49,6 +49,7 @@ public sealed class UpdatePatientCommandHandler : IRequestHandler<UpdatePatientC
         await _unitOfWork.SaveAsync(token);
 
         return new PatientDTO(
+                    updatedPatient.Id,
                     updatedPatient.FirstName,
                     updatedPatient.LastName,
                     updatedPatient.DateBirth

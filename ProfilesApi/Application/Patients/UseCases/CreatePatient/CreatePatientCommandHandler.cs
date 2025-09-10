@@ -48,6 +48,7 @@ public sealed class CreatePatientCommandHandler : IRequestHandler<CreatePatientC
         await _unitOfWork.SaveAsync(token);
 
         return new PatientDTO(
+                    createdPatient.Id,
                     createdPatient.FirstName,
                     createdPatient.LastName,
                     createdPatient.DateBirth

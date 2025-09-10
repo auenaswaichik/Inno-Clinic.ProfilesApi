@@ -52,8 +52,10 @@ public sealed class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCom
         await _unitOfWork.SaveAsync(token);
 
         return new DoctorDTO(
+                    updatedDoctor.Id,
                     updatedDoctor.FirstName,
                     updatedDoctor.LastName,
+                    updatedDoctor.Email,
                     updatedDoctor.DateBirth,
                     updatedDoctor.CareerStartYear,
                     updatedDoctor.SpecializationId,

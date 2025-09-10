@@ -66,8 +66,10 @@ public sealed class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCom
         );
 
         return new DoctorDTO(
+                    createdDoctor.Id,
                     createdDoctor.FirstName,
                     createdDoctor.LastName,
+                    createdDoctor.Email,
                     createdDoctor.DateBirth,
                     createdDoctor.CareerStartYear,
                     createdDoctor.SpecializationId,
