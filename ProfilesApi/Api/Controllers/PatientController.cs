@@ -1,3 +1,4 @@
+using Api.Constants;
 using Application.Patients.Models;
 using Application.Patients.UseCases.CreatePatient;
 using Application.Patients.UseCases.DeletePatient;
@@ -23,7 +24,7 @@ public class PatientController : ControllerBase
     {
         _mediator = mediator;
     }
-    [Authorize(Policy = "AdminOrDoctorAccess")]
+    [Authorize(Policy = PolicyConstants.ADMIN_OR_DOCTOR_ONLY_POLICY)]
     [HttpGet]
     public async Task<ActionResult<PagedList<PatientDTO>>> GetPatients([FromQuery] PatientParameters patientParameters)
     {
@@ -47,21 +48,21 @@ public class PatientController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
-    [Authorize(Policy = "PatientOnly")]
+    [Authorize(Policy = PolicyConstants.PATIENT_ONLY_POLICY)]
     [HttpPost]
     public async Task<ActionResult<PatientDTO>> CreatePatient([FromBody] CreatePatientCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
-    [Authorize(Policy = "PatientOnly")]
+    [Authorize(Policy = PolicyConstants.PATIENT_ONLY_POLICY)]
     [HttpPut]
     public async Task<ActionResult<PatientDTO>> UpdatePatient([FromBody] UpdatePatientCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
-    [Authorize(Policy = "PatientOnly")]
+    [Authorize(Policy = PolicyConstants.PATIENT_ONLY_POLICY)]
     [HttpDelete("{id}")]
     public async Task<ActionResult<PatientDTO>> DeletePatient(Guid id)
     {

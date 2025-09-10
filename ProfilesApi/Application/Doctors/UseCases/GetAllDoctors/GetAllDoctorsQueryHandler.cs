@@ -21,11 +21,12 @@ public sealed class GetAllDoctorsQueryHandler : IRequestHandler<GetAllDoctorsQue
         var doctorsDTOsList = doctorsList.Items
             .Select(m =>
                 new DoctorDTO(
+                    m.Id,
                     m.FirstName,
                     m.LastName,
+                    m.Email,
                     m.DateBirth,
                     m.CareerStartYear,
-                    m.ProfileId,
                     m.SpecializationId,
                     m.OfficeId
                 ));

@@ -21,10 +21,10 @@ public sealed class GetAllPatientsQueryHandler : IRequestHandler<GetAllPatientsQ
         var patientsDTOsList = patientsList.Items
             .Select(m =>
                 new PatientDTO(
+                    m.Id,
                     m.FirstName,
                     m.LastName,
-                    m.DateBirth,
-                    m.ProfileId
+                    m.DateBirth
                 ))
             .ToList();
             

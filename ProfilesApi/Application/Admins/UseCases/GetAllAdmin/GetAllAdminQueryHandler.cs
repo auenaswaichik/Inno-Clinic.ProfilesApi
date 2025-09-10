@@ -24,7 +24,6 @@ public sealed class GetAllAdminsQueryHandler : IRequestHandler<GetAllAdminsQuery
                     m.FirstName,
                     m.LastName,
                     m.DateBirth,
-                    m.ProfileId,
                     m.OfficeId
                 ))
             .ToList();

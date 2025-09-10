@@ -44,7 +44,6 @@ public sealed class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCom
             LastName = request.LastName,
             DateBirth = request.DateBirth,
             CareerStartYear = request.CareerStartYear,
-            ProfileId = request.ProfileId,
             SpecializationId = request.SpecializationId,
             OfficeId = request.OfficeId
         };
@@ -53,11 +52,12 @@ public sealed class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCom
         await _unitOfWork.SaveAsync(token);
 
         return new DoctorDTO(
+                    updatedDoctor.Id,
                     updatedDoctor.FirstName,
                     updatedDoctor.LastName,
+                    updatedDoctor.Email,
                     updatedDoctor.DateBirth,
                     updatedDoctor.CareerStartYear,
-                    updatedDoctor.ProfileId,
                     updatedDoctor.SpecializationId,
                     updatedDoctor.OfficeId
                 );

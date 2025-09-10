@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Domain.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
+using Api.Constants;
 
 namespace Api.Controllers;
 
@@ -24,7 +25,7 @@ public class AdminController : ControllerBase
         _mediator = mediator;
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = PolicyConstants.ADMIN_ONLY_POLICY)]
     [HttpGet]
     public async Task<ActionResult<PagedList<AdminDTO>>> GetAdmins([FromQuery] AdminParameters adminParameters)
     {
@@ -36,7 +37,7 @@ public class AdminController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = PolicyConstants.ADMIN_ONLY_POLICY)]
     [HttpGet("{id}")]
     public async Task<ActionResult<AdminDTO>> GetAdminById(Guid id)
     {
@@ -48,21 +49,21 @@ public class AdminController : ControllerBase
         return Ok(await _mediator.Send(query));
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = PolicyConstants.ADMIN_ONLY_POLICY)]
     [HttpPost]
     public async Task<ActionResult<AdminDTO>> CreateAdmin([FromBody] CreateAdminCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = PolicyConstants.ADMIN_ONLY_POLICY)]
     [HttpPut]
     public async Task<ActionResult<AdminDTO>> UpdateAdmin([FromBody] UpdateAdminCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
-    [Authorize(Policy = "AdminOnly")]
+    [Authorize(Policy = PolicyConstants.ADMIN_ONLY_POLICY)]
     [HttpDelete("{id}")]
     public async Task<ActionResult<AdminDTO>> DeleteAdmin(Guid id)
     {

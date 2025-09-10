@@ -43,7 +43,6 @@ public sealed class UpdateAdminCommandHandler : IRequestHandler<UpdateAdminComma
             FirstName = request.FirstName,
             LastName = request.LastName,
             DateBirth = request.DateBirth,
-            ProfileId = request.ProfileId,
             OfficeId = request.OfficeId
         };
 
@@ -54,7 +53,6 @@ public sealed class UpdateAdminCommandHandler : IRequestHandler<UpdateAdminComma
                     updatedAdmin.FirstName,
                     updatedAdmin.LastName,
                     updatedAdmin.DateBirth,
-                    updatedAdmin.ProfileId,
                     updatedAdmin.OfficeId
                 );
     }

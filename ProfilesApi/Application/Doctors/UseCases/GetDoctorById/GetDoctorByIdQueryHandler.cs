@@ -34,11 +34,12 @@ public sealed class GetDoctorByIdQueryHandler : IRequestHandler<GetDoctorByIdQue
         }
 
         return new DoctorDTO(
+                    doctor.Id,
                     doctor.FirstName,
                     doctor.LastName,
+                    doctor.Email,
                     doctor.DateBirth,
                     doctor.CareerStartYear,
-                    doctor.ProfileId,
                     doctor.SpecializationId,
                     doctor.OfficeId
                 );

@@ -9,5 +9,4 @@ public class UpdatePatientCommand : IRequest<PatientDTO>
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public DateTime DateBirth { get; set; }
-    public Guid ProfileId { get; set; }
 }

@@ -42,18 +42,17 @@ public sealed class UpdatePatientCommandHandler : IRequestHandler<UpdatePatientC
             Id = request.Id,
             FirstName = request.FirstName,
             LastName = request.LastName,
-            DateBirth = request.DateBirth,
-            ProfileId = request.ProfileId
+            DateBirth = request.DateBirth
         };
 
         var updatedPatient = _patientRepository.Update(patient);
         await _unitOfWork.SaveAsync(token);
 
         return new PatientDTO(
+                    updatedPatient.Id,
                     updatedPatient.FirstName,
                     updatedPatient.LastName,
-                    updatedPatient.DateBirth,
-                    updatedPatient.ProfileId
+                    updatedPatient.DateBirth
                 );
     }
 }
