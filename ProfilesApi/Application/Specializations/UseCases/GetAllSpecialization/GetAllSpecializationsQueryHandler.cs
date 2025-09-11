@@ -15,7 +15,8 @@ public sealed class GetAllSpecializationsQueryHandler : IRequestHandler<GetAllSp
 
     public async Task<List<SpecializationDTO>> Handle(GetAllSpecializationsQuery request, CancellationToken token)
     {
-        var specializationsList = await _specializationRepository.GetSpecializationsAsync(request.specializationParameters, token);
+        var parameters = request.SpecializationParameters ?? new Domain.Entities.Parameters.SpecializationParameters();
+        var specializationsList = await _specializationRepository.GetSpecializationsAsync(parameters, token);
 
         return specializationsList
             .Select(m =>

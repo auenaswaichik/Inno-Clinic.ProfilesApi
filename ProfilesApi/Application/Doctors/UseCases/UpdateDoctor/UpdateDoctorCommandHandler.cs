@@ -42,6 +42,7 @@ public sealed class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCom
             Id = request.Id,
             FirstName = request.FirstName,
             LastName = request.LastName,
+            Email = request.Email,
             DateBirth = request.DateBirth,
             CareerStartYear = request.CareerStartYear,
             SpecializationId = request.SpecializationId,

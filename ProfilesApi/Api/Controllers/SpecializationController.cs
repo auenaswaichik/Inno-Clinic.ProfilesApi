@@ -27,7 +27,7 @@ public class SpecializationController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<SpecializationDTO>>> GetSpecializations([FromQuery] SpecializationParameters specializationParameters)
     {
-        var query = new GetAllSpecializationsQuery()
+        var query = new GetAllSpecializationsQuery
         {
             SpecializationParameters = specializationParameters
         };

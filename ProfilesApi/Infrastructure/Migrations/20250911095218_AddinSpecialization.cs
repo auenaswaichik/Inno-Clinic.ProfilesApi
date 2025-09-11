@@ -18,7 +18,8 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,11 +49,11 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Specializations",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("11111111-1111-1111-1111-111111111111"), "Cardiology" },
-                    { new Guid("22222222-2222-2222-2222-222222222222"), "Neurology" }
+                    { new Guid("11111111-1111-1111-1111-111111111111"), "Heart related specialization", "Cardiology" },
+                    { new Guid("22222222-2222-2222-2222-222222222222"), "Brain related specialization", "Neurology" }
                 });
 
             migrationBuilder.CreateIndex(

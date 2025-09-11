@@ -48,6 +48,7 @@ public sealed class CreateDoctorCommandHandler : IRequestHandler<CreateDoctorCom
             LastName = request.LastName,
             DateBirth = request.DateBirth,
             Email = request.Email,
+            SpecializationId = request.SpecializationId,
             CareerStartYear = request.CareerStartYear
         };
 

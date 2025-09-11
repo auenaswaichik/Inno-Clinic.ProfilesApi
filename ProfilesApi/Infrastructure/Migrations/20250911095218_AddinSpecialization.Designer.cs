@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ProfilesApiDbContext))]
-    [Migration("20250910131746_AddinSpecialization")]
+    [Migration("20250911095218_AddinSpecialization")]
     partial class AddinSpecialization
     {
         /// <inheritdoc />
@@ -216,6 +216,10 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -228,11 +232,13 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Description = "Heart related specialization",
                             Name = "Cardiology"
                         },
                         new
                         {
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Description = "Brain related specialization",
                             Name = "Neurology"
                         });
                 });

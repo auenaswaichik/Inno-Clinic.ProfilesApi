@@ -10,4 +10,5 @@ public class CreateDoctorCommand : IRequest<DoctorDTO>
     public string? Email { get; set; }
     public DateTime DateBirth { get; set; }
     public DateTime CareerStartYear { get; set; }
+    public Guid SpecializationId { get; set; }
 }
